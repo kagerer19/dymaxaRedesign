@@ -1,18 +1,58 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
-        <footer className="bg-[#1A202C] text-white py-6 fixed bottom-0 w-full">
-            <div className="container mx-auto flex items-center justify-between">
-                <div className="flex items-center gap-3">
-          <span className="w-6 h-6 mb-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path>
-              <path d="M9 18h6"></path>
-              <path d="M10 22h4"></path>
-            </svg>
-          </span>
-                    <span className="hidden md:inline">Dymaxa Recruiting</span>
+        <footer className="flex flex-col justify-around fixed bottom-0 w-full bg-[#132027] text-white py-6">
+            <div className="container flex flex-col md:flex-row justify-between items-center">
+                <div className="flex items-center flex-col mb-5 md:mb-0">
+                    <img className={"header-logo"} src={"src/assets/Dymaxa-logo.png"} alt={"Four leaf clover"}/>
+                    <a className="flex items-center gap-3 text-lg font-semibold sm:text-base md:text-lg mt-2 md:mt-0 hover:text-gray-300"
+                       href="#">
+                        <span>Dymaxa Recruiting</span>
+                    </a>
+                    <div className="ml-8 mt-4 text-center text-sm text-gray-500 md:text-base">© 2024 Dymaxa Recruiting. All
+                        Rights Reserved.
+                    </div>
+                </div>
+
+                <div className="flex lg:space-x-19 space-x-9 justify-end pr-6 whitespace-nowrap">
+                    <div className="flex flex-col text-center"> {/* Added text-center */}
+                        <h3 className="text-lg font-semibold mb-2 ">About Us</h3>
+                        <ul className="space-y-2 text-sm">
+                            <li>
+                                <a className="hover:underline">Our Story</a>
+                            </li>
+                            <li>
+                                <a className="hover:underline">Leadership</a>
+                            </li>
+                            <li>
+                                <a className="hover:underline">News</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="flex flex-col text-center"> {/* Added text-center */}
+                        <h3 className="text-lg font-semibold mb-2">Contact</h3>
+                        <ul className="space-y-2 text-sm">
+                            <li>
+                                <a className="hover:underline">Support</a>
+                            </li>
+                            <li>
+                                <a className="hover:underline">Enquiries</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="flex flex-col text-center"> {/* Added text-center */}
+                        <h3 className="text-lg font-semibold mb-2">Social Media</h3>
+                        <ul className="space-y-2 text-sm">
+                            <li>
+                                <a className="hover:underline">Facebook</a>
+                            </li>
+                            <li>
+                                <a className="hover:underline">LinkedIn</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </footer>
