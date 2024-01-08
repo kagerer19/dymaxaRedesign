@@ -1,18 +1,21 @@
-import { useState } from 'react'
+import {useState} from 'react'
 import './App.css'
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
-import NavRecruit from "./components/Nav-recruit.jsx";
-import Hero from "./components/Hero.jsx";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Home from "./pages/home.jsx";
+import NotFound from "./pages/NotFound.jsx";
+
 
 function App() {
-  return (
-    <>
-        <Header />
-        <Hero />
-        <Footer />
-    </>
-  )
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<Home/>} />
+                    <Route path='*' element={<NotFound/>} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
 }
 
 export default App
