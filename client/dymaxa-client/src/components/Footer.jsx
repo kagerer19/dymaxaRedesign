@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
-        <footer className="flex flex-col justify-around fixed bottom-0 w-full bg-[#132027] text-white py-6">
+        <footer className="flex flex-col justify-around  bottom-0 w-full bg-[#132027] text-white py-6">
             <div className="container flex flex-col md:flex-row justify-between items-center">
                 <div className="flex items-center flex-col mb-5 md:mb-0">
                     <img className={"header-logo"} src={"src/assets/Dymaxa-logo.png"} alt={"Four leaf clover"}/>
@@ -17,7 +17,7 @@ const Footer = () => {
                 </div>
 
                 <div className="flex lg:space-x-19 space-x-9 justify-end pr-6 whitespace-nowrap">
-                    <div className="flex flex-col text-center"> {/* Added text-center */}
+                    <div className="flex flex-col text-center">
                         <h3 className="text-lg font-semibold mb-2 ">About Us</h3>
                         <ul className="space-y-2 text-sm">
                             <li>
@@ -31,7 +31,7 @@ const Footer = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="flex flex-col text-center"> {/* Added text-center */}
+                    <div className="flex flex-col text-center">
                         <h3 className="text-lg font-semibold mb-2">Contact</h3>
                         <ul className="space-y-2 text-sm">
                             <li>
