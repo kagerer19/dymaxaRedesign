@@ -1,8 +1,9 @@
 import {useState} from 'react'
 import './App.css'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Home from "./pages/home.jsx";
+import Home from "./pages/Home.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import Jobs from "./pages/Jobs.jsx";
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Home/>} />
+                    <Route path='/Jobs' element={<Jobs/>} />
                     <Route path='*' element={<NotFound/>} />
                 </Routes>
             </BrowserRouter>

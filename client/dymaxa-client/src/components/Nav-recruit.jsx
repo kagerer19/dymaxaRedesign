@@ -10,9 +10,9 @@ import {
 } from '@heroicons/react/24/outline'
 
 const solutions = [
-    { name: 'Recruitment Home', description: 'Get a better understanding of who we are', href: '#', icon: HomeIcon },
+    { name: 'Recruitment Home', description: 'Get a better understanding of who we are', href: '/', icon: HomeIcon },
     { name: 'About', description: 'Learn about our solutions', href: '#', icon: InformationCircleIcon },
-    { name: 'Jobs', description: "Find Jobs that suit your profile", href: '#', icon: BriefcaseIcon },
+    { name: 'Jobs', description: "Find Jobs that suit your profile", href: '/Jobs', icon: BriefcaseIcon },
     { name: 'Candidates', description: 'See who we work with', href: '#', icon: UserPlusIcon },
     { name: 'Contact', description: 'Get in contact', href: '#', icon: PhoneIcon },
 ]
@@ -20,7 +20,7 @@ const solutions = [
 function NavRecruit() {
     return (
         <Popover className="relative">
-            <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-700">
+            <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-700 outline-none">
                 <span>Dymaxa Recruitment</span>
                 <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
             </Popover.Button>
