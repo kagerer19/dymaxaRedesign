@@ -1,6 +1,43 @@
 const mongoose = require('mongoose');
+const {ObjectId} = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
+const jobHistorySchema = new mongoose.Schema({
+
+    title: {
+        type: String,
+        trim: true,
+        maxlength: 70,
+    },
+
+    description: {
+        type: String,
+        trim: true,
+    },
+    salary: {
+        type: String,
+        trim: true,
+    },
+    location: {
+        type: String,
+    },
+    interviewDate: {
+        type: Date,
+    },
+    applicationStatus: {
+        type: String,
+        enum: ['pending', 'accepted', 'rejected'],
+        default: 'pending'
+    },
+    user: {
+        type: ObjectId,
+        ref: "User",
+        required: true
+    },
+
+
+}, {timestamps: true})
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -32,10 +69,11 @@ const userSchema = new mongoose.Schema({
         required: [true, "Password is required"],
         minLength: [6, "Password must have at least (6) characters"],
     },
+    jobsHistory: [jobHistorySchema],
 
     role: {
         type: Number,
-        default: 0
+        default: 1
     }
 }, {timestamps: true})
 
@@ -49,7 +87,7 @@ userSchema.pre('save', async function (next) {
 });
 
 //compare password
-userSchema.methods.comparePassword = async function(enteredPassword) {
+userSchema.methods.comparePassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 }
 

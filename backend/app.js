@@ -12,6 +12,8 @@ const errorHandler = require("./middleware/error.js");
 //import routes
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const jobTypeRoutes = require("./routes/jobTypesRoutes");
+const jobRoutes = require("./routes/jobsRoutes");
 
 //databse connection
 const dbconnectionstring = process.env.DB_CONNECTION_STRING;
@@ -21,7 +23,7 @@ mongoose.set("strictQuery", true, "useNewUrlParser", true);
 const connectDB = async () => {
     try {
         await mongoose.connect(dbconnectionstring);
-        console.log("MongoDB is Connected!");
+        console.log("MongoDB is Connected!!");
     } catch (err) {
         console.error(err.message);
         process.exit(1);
@@ -41,6 +43,8 @@ app.use(bodyParser.urlencoded({
 //Routes middleware
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api', jobTypeRoutes);
+app.use('/api', jobRoutes);
 
 
 
