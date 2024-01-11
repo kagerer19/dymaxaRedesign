@@ -16,7 +16,7 @@ function Jobs() {
                 }}
             >
                 <h1 className="jobs-hero-text">Jobs</h1>
-                <TextField label="Search Jobs" className={"search"} Outlined secondary/>
+                <TextField variant="filled" label="Search Jobs" className={"search"} color="success"/>
                 <JobsSearch />
             </div>
         </div>

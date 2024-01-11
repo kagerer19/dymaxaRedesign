@@ -2,6 +2,8 @@ import React from "react";
 import NavRecruit from "../components/Nav-recruit.jsx";
 import NavAupair from "../components/Nav-aupair.jsx";
 import JobsHero from "../components/JobsHero.jsx";
+import {Box, Card, Container, Stack, Typography} from "@mui/material";
+import {palette} from "@mui/system";
 
 const Jobs = () => {
     return (
@@ -22,6 +24,27 @@ const Jobs = () => {
                 </div>
             </header>
             <JobsHero />
+            <Container sx={{ marginLeft: '2rem' }}>
+                <Stack
+                    direction={{xs: 'column', sm: 'row'}}
+                    spacing={{xs: 1, sm: 2, md: 4}}
+
+                >
+                    <Box sx={{flex: 2, p: 2}}>
+                        <Card sx={{minWidth: 150, mb: 3, mt: 3, p: 2, backgroundColor: '#F8F7F2'}}>
+                            <Box sx={{pb: 2}}>
+                                <Typography component="h4" sx={{color: '#4a5568', fontWeight: 600}}>
+                                    Filter job by category
+                                </Typography>
+                            </Box>
+                        </Card>
+                    </Box>
+                    <Box sx={{flex: 5, p: 2}}>
+
+                    </Box>
+
+                </Stack>
+            </Container>
         </>
     );
 };
