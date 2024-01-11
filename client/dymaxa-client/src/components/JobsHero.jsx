@@ -1,9 +1,8 @@
 import React from "react";
-import JobsHeader from "../pages/Jobs.jsx";
 import {TextField} from "@mui/material";
 import JobsSearch from "./jobSearch.jsx";
 
-function Jobs() {
+function JobsHero() {
     return (
         <div className="jobs-hero-screen">
             <div className="absolute"></div>
@@ -23,4 +22,4 @@ function Jobs() {
     )
 }
 
-export default Jobs;
+export default JobsHero;

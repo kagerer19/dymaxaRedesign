@@ -4,7 +4,7 @@ const {allUsers, singleUser, editUser, deleteUser} = require("../controllers/use
 const {isAdmin, isAuthenticated} = require("../middleware/auth");
 const {createJobType, allJobsType, updateJobType, deleteJobType} = require("../controllers/jobsTypeController");
 
-//Job routes
+//JobPage routes
 
 // /api/type/create
 router.post('/type/create', isAuthenticated, isAdmin, createJobType)

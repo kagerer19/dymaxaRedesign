@@ -7,7 +7,7 @@ This project is a redesign of a recruitment website using the MERN (MongoDB, Exp
 ## Features
 
 - **User Authentication:** Allow users to sign up, log in, and manage their profiles.
-- **Job Listings:** Display job opportunities with details and application options.
+- **JobPage Listings:** Display job opportunities with details and application options.
 - **Search and Filters:** Enable users to search for jobs based on various criteria.
 - **Responsive Design:** Ensure a seamless experience across devices.
 

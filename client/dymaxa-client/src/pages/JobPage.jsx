@@ -1,11 +1,22 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import NavRecruit from "../components/Nav-recruit.jsx";
 import NavAupair from "../components/Nav-aupair.jsx";
 import JobsHero from "../components/JobsHero.jsx";
 import {Box, Card, Container, Stack, Typography} from "@mui/material";
-import {palette} from "@mui/system";
+import {useDispatch} from "react-redux";
+import {useParams} from "react-router-dom";
+import {jobLoadAction} from "../redux/actions/jobActions.js";
 
-const Jobs = () => {
+const JobPage = () => {
+    const dispatch = useDispatch();
+    const { keyword, location } = useParams();
+
+    const [pages, setPage] = useState(1);
+    const [cat, setCat] = React.useState('');
+
+    useEffect(() => {
+        dispatch(jobLoadAction(pages, keyword, cat, location));
+    }, [pages, keyword, cat, location]);
     return (
         <>
             <header
@@ -15,7 +26,7 @@ const Jobs = () => {
                          alt={"Four leaf clover"}/>
                     <a className="hidden md:flex items-center gap-3 text-lg font-semibold sm:text-base mr-4 mb-1 hover:text-gray-300"
                        href="#">
-                        <span className="hidden md:inline text-black">Dymaxa Recruiting</span>
+                        <span className="hidden md:inline text-black">Dymaxas Recruiting</span>
                     </a>
                 </div>
                 <div className="flex gap-5">
@@ -49,4 +60,4 @@ const Jobs = () => {
     );
 };
 
-export default Jobs;
+export default JobPage;

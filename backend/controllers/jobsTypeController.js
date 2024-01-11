@@ -50,7 +50,7 @@ exports.deleteJobType = async (req, res, next) => {
         res.status(201).json({
             success: true,
             jobT,
-            message: "Job type deleted"
+            message: "JobPage type deleted"
         })
     } catch (error) {
         next(new ErrorResponse("Server error", 500))

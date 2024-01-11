@@ -6,7 +6,7 @@ const jobTypeSchema = new mongoose.Schema({
     jobTypeName: {
         type: String,
         trim: true,
-        required: [true, "Job category is required"],
+        required: [true, "JobPage category is required"],
         maxLength: 70,
     },
     user: {
