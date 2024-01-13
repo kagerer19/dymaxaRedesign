@@ -35,7 +35,7 @@ const connectDB = async () => {
 app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: "5mb" }));
 app.use(bodyParser.urlencoded({
-    limit: "5mb",
+    limit: "15mb",
     extended: true
 }));
 app.use(cookieParser());

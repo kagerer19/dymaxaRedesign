@@ -19,7 +19,7 @@ const solutions = [
 function NavAupair() {
     return (
         <Popover className="relative">
-            <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-700">
+            <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-700 outline-none">
                 <span>Dymaxa Au-pairing</span>
                 <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
             </Popover.Button>

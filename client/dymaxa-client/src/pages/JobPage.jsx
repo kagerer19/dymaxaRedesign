@@ -1,22 +1,32 @@
 import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Box, Card, Container, Pagination, Stack, Typography} from "@mui/material";
+import {useParams} from "react-router-dom";
+import {jobLoadAction} from "../redux/actions/jobActions.js";
 import NavRecruit from "../components/Nav-recruit.jsx";
 import NavAupair from "../components/Nav-aupair.jsx";
 import JobsHero from "../components/JobsHero.jsx";
-import {Box, Card, Container, Stack, Typography} from "@mui/material";
-import {useDispatch} from "react-redux";
-import {useParams} from "react-router-dom";
-import {jobLoadAction} from "../redux/actions/jobActions.js";
+import Footer from "../components/Footer.jsx";
+import truncateText from "../utilities/truncateJobDes.js";
+
 
 const JobPage = () => {
-    const dispatch = useDispatch();
-    const { keyword, location } = useParams();
+    const {jobs, setUniqueLocation, pages, loading} = useSelector(state => state.loadJobs);
 
-    const [pages, setPage] = useState(1);
+    const dispatch = useDispatch();
+    const {keyword, location} = useParams();
+
+    const [page, setPage] = useState(1);
     const [cat, setCat] = React.useState('');
 
     useEffect(() => {
-        dispatch(jobLoadAction(pages, keyword, cat, location));
-    }, [pages, keyword, cat, location]);
+        dispatch(jobLoadAction(page, keyword, cat, location));
+    }, [page, keyword, cat, location]);
+
+
+    const handleChangeCategory = (e) => {
+        setCat(e.target.value);
+    }
     return (
         <>
             <header
@@ -34,15 +44,15 @@ const JobPage = () => {
                     <NavAupair/>
                 </div>
             </header>
-            <JobsHero />
-            <Container sx={{ marginLeft: '2rem' }}>
+            <JobsHero/>
+            <Container sx={{marginLeft: '1.7rem'}}>
                 <Stack
                     direction={{xs: 'column', sm: 'row'}}
                     spacing={{xs: 1, sm: 2, md: 4}}
 
                 >
                     <Box sx={{flex: 2, p: 2}}>
-                        <Card sx={{minWidth: 150, mb: 3, mt: 3, p: 2, backgroundColor: '#F8F7F2'}}>
+                        <Card sx={{minWidth: 150, width: 220, mb: 3, mt: 3, p: 2, backgroundColor: '#F8F7F2'}}>
                             <Box sx={{pb: 2}}>
                                 <Typography component="h4" sx={{color: '#4a5568', fontWeight: 600}}>
                                     Filter job by category
@@ -50,12 +60,44 @@ const JobPage = () => {
                             </Box>
                         </Card>
                     </Box>
-                    <Box sx={{flex: 5, p: 2}}>
+                    <Box
+                        sx={{
+                            flex: 6,
+                            p: 2,
+                            minHeight: '150px',
+                        }}>
+                        {jobs && jobs.map((job, i) => (
+                            <div
+                                key={i}
+                                style={{minWidth: '900px'}}
+                                className="p-6 border rounded-lg shadow bg-[#F8F7F2] text-[#4a5568] mb-4"
+                            >
+                                <h1 className="text-lg font-semibold mb-3">{job.title}</h1>
+                                <p>{truncateText(job.description, 30)}</p>
 
+                                <ul className="list-disc mt-3 flex gap-6">
+                                    <li><strong>Salary:</strong>&nbsp; {job.salary}</li>
+                                    <li className="flex items-center">
+                                        <img src="src/assets/icons/location.svg" alt='Location icon'
+                                             className="mr-1"/><strong>
+                                        <span>{job.location}</span>
+                                    </strong>
+                                    </li>
+                                    <li><strong>Employment Type:</strong>&nbsp; {job.employmentType}</li>
+                                </ul>
+
+
+                                <a href="#"
+                                   className="inline-flex items-center py-2 text-sm font-medium rounded-lg text-[#4a5568] cta-button mt-5">
+                                    Read more
+                                </a>
+                            </div>
+                        ))}
                     </Box>
 
                 </Stack>
             </Container>
+            <Footer/>
         </>
     );
 };

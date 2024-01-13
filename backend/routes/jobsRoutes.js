@@ -4,7 +4,6 @@ const {isAdmin, isAuthenticated} = require("../middleware/auth");
 const {createJob, singleJob, updateJob, showJobs} = require("../controllers/jobsController");
 
 //Jobs routes
-
 // /api/job/create
 router.post('/job/create', isAuthenticated, isAdmin, createJob);
 
@@ -15,6 +14,6 @@ router.get('/job/:id', singleJob);
 router.put('/job/update/:job_id', isAuthenticated, isAdmin, updateJob);
 
 // /api/jobs/show
-router.get('/jobs/show',isAuthenticated, showJobs);
+router.get('/jobs/show', showJobs);
 
 module.exports = router;

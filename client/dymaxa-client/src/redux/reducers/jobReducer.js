@@ -1,4 +1,4 @@
-import { JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_RESET, JOB_LOAD_SUCCESS } from "../constants/jobConstants.js"
+import { JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_RESET, JOB_LOAD_SUCCESS } from "../constants/jobConstants"
 
 
 export const loadJobReducer = (state = { jobs: [] }, action) => {
@@ -13,6 +13,7 @@ export const loadJobReducer = (state = { jobs: [] }, action) => {
                 pages: action.payload.pages,
                 count: action.payload.count,
                 setUniqueLocation: action.payload.setUniqueLocation,
+                employmentTpe: action.payload.employmentTpe,
                 jobs: action.payload.jobs
             }
         case JOB_LOAD_FAIL:

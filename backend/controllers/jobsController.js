@@ -11,6 +11,7 @@ exports.createJob = async (req, res, next) => {
             salary: req.body.salary,
             location: req.body.location,
             jobType: req.body.jobType,
+            employmentType: req.body.employmentType,
             user: req.user.id
         });
         res.status(201).json({
@@ -51,7 +52,7 @@ exports.updateJob = async (req, res, next) => {
 }
 
 
-//update job by id.
+//Show jobs
 exports.showJobs = async (req, res, next) => {
 
     //enable search

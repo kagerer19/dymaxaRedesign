@@ -2,7 +2,7 @@
 function JobsSearch() {
     return (
         <>
-            <a href="#" className="cta-button" style={{width: '100px', margin: '10px 10px'}}>Search</a>
+            <a href="#" className="cta-button" style={{margin: '10px 10px'}}>Search</a>
         </>
     )
 }

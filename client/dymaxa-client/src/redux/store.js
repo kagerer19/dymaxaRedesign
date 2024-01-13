@@ -1,6 +1,6 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux';
 import {composeWithDevTools, devToolsEnhancer} from '@redux-devtools/extension';
-import {thunk} from 'redux-thunk'; // Change the import statement
+import {thunk} from 'redux-thunk';
 import { loadJobReducer } from './reducers/jobReducer';
 
 // combine reducers

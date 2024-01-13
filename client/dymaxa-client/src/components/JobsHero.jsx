@@ -9,12 +9,13 @@ function JobsHero() {
             <div
                 className="hero-content-jobs"
                 style={{
-                    maxWidth: '800px', // Adjust the maximum width based on your design
-                    margin: '0 auto', // Center the content
-                    padding: '20px', // Add padding to the content
+                    maxWidth: '800px',
+                    margin: '0 auto',
+                    padding: '20px',
                 }}
             >
                 <h1 className="jobs-hero-text">Jobs</h1>
+                <p className="jobs-content">Find your Dream Job</p>
                 <TextField variant="filled" label="Search Jobs" className={"search"} color="success"/>
                 <JobsSearch />
             </div>

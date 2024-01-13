@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 
@@ -34,14 +33,16 @@ const jobSchema = new mongoose.Schema({
         ref: "JobType",
         required: true
     },
+    employmentType: {
+        type: String,
+        ref: "employmentType",
+        required: true
+    },
     user: {
         type: ObjectId,
         ref: "User",
         required: true
     },
-
-
-
 }, { timestamps: true })
 
 module.exports = mongoose.model("Job", jobSchema);
