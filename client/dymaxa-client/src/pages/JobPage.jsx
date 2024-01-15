@@ -1,13 +1,18 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Box, Card, Container, Pagination, Stack, Typography} from "@mui/material";
-import {useParams} from "react-router-dom";
+import {Box, Card, Container, ListItemIcon, MenuList, Pagination, Stack, Typography} from "@mui/material";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import {Link, useParams} from "react-router-dom";
 import {jobLoadAction} from "../redux/actions/jobActions.js";
 import NavRecruit from "../components/Nav-recruit.jsx";
 import NavAupair from "../components/Nav-aupair.jsx";
 import JobsHero from "../components/JobsHero.jsx";
 import Footer from "../components/Footer.jsx";
 import truncateText from "../utilities/truncateJobDes.js";
+import LoadingBox from "../components/LoadingBox.jsx";
+import SelectComponent from "../components/SelectedComponent.jsx";
+import {jobType_LoadAction} from "../redux/actions/jobTypeActions.js";
+import MenuItem from "@mui/material/MenuItem";
 
 
 const JobPage = () => {
@@ -23,6 +28,9 @@ const JobPage = () => {
         dispatch(jobLoadAction(page, keyword, cat, location));
     }, [page, keyword, cat, location]);
 
+    useEffect(() => {
+        dispatch(jobType_LoadAction());
+    }, []);
 
     const handleChangeCategory = (e) => {
         setCat(e.target.value);
@@ -58,6 +66,33 @@ const JobPage = () => {
                                     Filter job by category
                                 </Typography>
                             </Box>
+                            <SelectComponent handleChangeCategory={handleChangeCategory} cat={cat}/>
+                        </Card>
+                        {/* jobs by location */}
+                        <Card sx={{ minWidth: 150, mb: 3, mt: 3, p: 2, backgroundColor: '#F8F7F1'}}>
+                            <Box sx={{ pb: 2 }}>
+                                <Typography component="h4" sx={{fontWeight: 600}}>
+                                    Filter job by location
+                                </Typography>
+                                <MenuList>
+                                    {
+                                        setUniqueLocation && setUniqueLocation.map((location, i) => (
+                                            <MenuItem key={i}>
+                                                <ListItemIcon>
+                                                    <LocationOnIcon />
+                                                </ListItemIcon>
+                                                <Typography component="h4" sx={{color: 'rgba(0,0,0,0.89)', fontWeight: 600, fontStyle: 'none'}}>
+                                                    <Link to={`/search/location/${location}`}>
+                                                        {location}
+                                                    </Link>
+                                                </Typography>
+                                            </MenuItem>
+                                        ))
+                                    }
+
+                                </MenuList>
+
+                            </Box>
                         </Card>
                     </Box>
                     <Box
@@ -66,28 +101,40 @@ const JobPage = () => {
                             p: 2,
                             minHeight: '150px',
                         }}>
-                        {jobs && jobs.map((job, i) => (
+                        {
+                            loading ?
+                                <LoadingBox /> :
+                                jobs && jobs.length === 0 ?
+                                    <>
+                                        <Box
+                                            sx={{
+                                                minHeight: '350px',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center'
+                                            }}>
+
+                                            <h2>No result found!</h2>
+                                        </Box>
+                                    </> :
+                            jobs && jobs.map((job, i) => (
                             <div
                                 key={i}
                                 style={{minWidth: '900px'}}
                                 className="p-6 border rounded-lg shadow bg-[#F8F7F2] text-[#4a5568] mb-4"
                             >
                                 <h1 className="text-lg font-semibold mb-3">{job.title}</h1>
-                                <p>{truncateText(job.description, 30)}</p>
+                                <p>{truncateText(job.description, 40)}</p>
 
                                 <ul className="list-disc mt-3 flex gap-6">
                                     <li><strong>Salary:</strong>&nbsp; {job.salary}</li>
-                                    <li className="flex items-center">
-                                        <img src="src/assets/icons/location.svg" alt='Location icon'
-                                             className="mr-1"/><strong>
-                                        <span>{job.location}</span>
-                                    </strong>
+                                    <li><strong><LocationOnIcon />{job.location}</strong>
                                     </li>
                                     <li><strong>Employment Type:</strong>&nbsp; {job.employmentType}</li>
                                 </ul>
 
 
-                                <a href="#"
+                                <a href="/JobDescriptionPage"
                                    className="inline-flex items-center py-2 text-sm font-medium rounded-lg text-[#4a5568] cta-button mt-5">
                                     Read more
                                 </a>
@@ -95,6 +142,10 @@ const JobPage = () => {
                         ))}
                     </Box>
 
+                </Stack>
+                <Stack className="mb-6" spacing={4}>
+                    <Pagination page={page} count={pages === 0 ? 1 : pages}
+                                onChange={(event, value) => setPage(value)}/>
                 </Stack>
             </Container>
             <Footer/>

@@ -1,6 +1,7 @@
 import React from "react";
 import {TextField} from "@mui/material";
 import JobsSearch from "./jobSearch.jsx";
+import SearchInputEl from "./SearchInputEl.jsx";
 
 function JobsHero() {
     return (
@@ -16,8 +17,7 @@ function JobsHero() {
             >
                 <h1 className="jobs-hero-text">Jobs</h1>
                 <p className="jobs-content">Find your Dream Job</p>
-                <TextField variant="filled" label="Search Jobs" className={"search"} color="success"/>
-                <JobsSearch />
+                <SearchInputEl />
             </div>
         </div>
     )

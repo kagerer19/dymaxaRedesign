@@ -2,7 +2,8 @@ import './App.css'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import Jobs from "./pages/JobPage.jsx";
+import JobDescriptionPage from "./pages/JobDescriptionPage.jsx";
+import JobPage from "./pages/JobPage.jsx";
 
 
 function App() {
@@ -11,7 +12,10 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Home/>} />
-                    <Route path='/Jobs' element={<Jobs/>} />
+                    <Route path='/JobPage' element={<JobPage/>} />
+                    <Route path='/search/location/:location' element={<JobPage/>} />
+                    <Route path='/search/:keyword' element={<JobPage/>} />
+                    <Route path='/JobDescriptionPage' element={<JobDescriptionPage/>} />
                     <Route path='*' element={<NotFound/>} />
                 </Routes>
             </BrowserRouter>

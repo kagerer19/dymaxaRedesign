@@ -1,13 +1,12 @@
 import '../App.css'
-import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
-import NavRecruit from "../components/Nav-recruit.jsx";
 import Hero from "../components/Hero.jsx";
+import DymaxaHeader from "../components/DymaxaHeader.jsx";
 
 function Home() {
     return (
         <>
-            <Header />
+            <DymaxaHeader />
             <Hero />
             <Footer />
         </>

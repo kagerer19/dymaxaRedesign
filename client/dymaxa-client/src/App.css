@@ -2,8 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 /* Apply Lato font to all elements */
-body {
+* {
     font-family: 'Lato', sans-serif;
+}
+
+body {
     background-color: rgba(248, 247, 241, 0.71);
 }
 
