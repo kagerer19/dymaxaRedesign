@@ -7,12 +7,13 @@ import {jobLoadAction} from "../redux/actions/jobActions.js";
 import NavRecruit from "../components/Nav-recruit.jsx";
 import NavAupair from "../components/Nav-aupair.jsx";
 import JobsHero from "../components/JobsHero.jsx";
-import Footer from "../components/Footer.jsx";
+import DymaxaFooter from "../components/DymaxaFooter.jsx";
 import truncateText from "../utilities/truncateJobDes.js";
 import LoadingBox from "../components/LoadingBox.jsx";
 import SelectComponent from "../components/SelectedComponent.jsx";
 import {jobType_LoadAction} from "../redux/actions/jobTypeActions.js";
 import MenuItem from "@mui/material/MenuItem";
+import LoginOptions from "../components/LoginOptions.jsx";
 
 
 const JobPage = () => {
@@ -47,13 +48,14 @@ const JobPage = () => {
                         <span className="hidden md:inline text-black">Dymaxas Recruiting</span>
                     </a>
                 </div>
-                <div className="flex gap-5">
+                <div className="flex items-center gap-5">
                     <NavRecruit/>
                     <NavAupair/>
+                    <LoginOptions/>
                 </div>
             </header>
             <JobsHero/>
-            <Container sx={{marginLeft: '1.7rem'}}>
+            <Container sx={{marginLeft: '3.7rem'}}>
                 <Stack
                     direction={{xs: 'column', sm: 'row'}}
                     spacing={{xs: 1, sm: 2, md: 4}}
@@ -148,7 +150,7 @@ const JobPage = () => {
                                 onChange={(event, value) => setPage(value)}/>
                 </Stack>
             </Container>
-            <Footer/>
+            <DymaxaFooter/>
         </>
     );
 };
