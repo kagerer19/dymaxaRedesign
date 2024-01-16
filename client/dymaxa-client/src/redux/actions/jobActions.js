@@ -15,15 +15,13 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
                 payload: data,
             });
         } else {
-            // Handle the error, e.g., log it or show an error message
-            const errorData = await response.json(); // Assuming error response is in JSON format
+            const errorData = await response.json();
             dispatch({
                 type: JOB_LOAD_FAIL,
                 payload: errorData,
             });
         }
     } catch (error) {
-        // Handle any other errors (e.g., network issues)
         dispatch({
             type: JOB_LOAD_FAIL,
             payload: error.message,
