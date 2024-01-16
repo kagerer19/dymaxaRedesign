@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import Footer from '../components/Footer.jsx'
+import DymaxaFooter from '../components/DymaxaFooter.jsx'
 import Navbar from '../components/DymaxaHeader.jsx'
 
 const NotFound = () => {
@@ -11,7 +11,7 @@ const NotFound = () => {
 
                 <h1>Page not found!</h1>
             </Box>
-            <Footer />
+            <DymaxaFooter />
         </>
     )
 }
