@@ -97,6 +97,10 @@ a {
     background-color: #34495e;
 }
 
+.LOGIN-PAGE {
+    background-color: rgba(229, 229, 247, 0.29);
+}
+
 /* Job- card */
 .jobs-hero-screen {
     background-image: url("../src/assets/jobs-screen-1-darker.png");
