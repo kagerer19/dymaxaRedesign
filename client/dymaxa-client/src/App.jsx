@@ -2,17 +2,21 @@ import './App.css'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import JobPage from "./pages/JobPage.jsx";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { ProSidebarProvider } from "react-pro-sidebar";
 import LoginPage from "./pages/LoginPage.jsx";
-import UserDashboard from "./pages/user/UserDashboard.jsx";
-import UserRoute from "./components/UserRoute.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import AdminRoute from "./components/AdminRoute.jsx";
 import Layout from "./pages/global/Layout.jsx";
+import CurrentJobs from "./pages/admin/CurrentJobs.jsx";
+import JobPage from "./pages/JobPage.jsx";
 
 
-const UserDashboardHOC = Layout(UserDashboard)
+
+//HOC- higher order Components
+const AdminDashboardHOC = Layout(AdminDashboard)
+const CurrentJobsHOC = Layout(CurrentJobs)
 function App() {
     return (
         <>
@@ -25,8 +29,9 @@ function App() {
                         <Route path='/search/location/:location' element={<JobPage/>}/>
                         <Route path='/search/:keyword' element={<JobPage/>}/>
                         <Route path='/LoginPage' element={<LoginPage/>}/>
-                        <Route path='/user/UserDashboard' element={<UserRoute><UserDashboardHOC/></UserRoute>}/>
-                        <Route path='/user/UserJobHistory' element={<UserRoute><UserDashboardHOC/></UserRoute>}/>
+                        <Route path='/admin/AdminDashboard' element={<AdminRoute><AdminDashboardHOC/></AdminRoute>}/>
+                        <Route path='/admin/CurrentJobs' element={<AdminRoute><CurrentJobsHOC/></AdminRoute>}/>
+                        <Route path='/user/jobs' element={<AdminRoute><CurrentJobsHOC/></AdminRoute>}/>
                         <Route path='*' element={<NotFound/>}/>
                     </Routes>
                 </BrowserRouter>

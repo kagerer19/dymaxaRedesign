@@ -25,7 +25,7 @@ exports.allUsers = async (req, res, next) => {
     }
 }
 
-//Show single user
+//Show single admin
 exports.singleUser = async (req, res, next) => {
     try{
         const user = await User.findById(req.params.id);
@@ -40,7 +40,7 @@ exports.singleUser = async (req, res, next) => {
     }
 }
 
-//edit user
+//edit admin
 exports.editUser = async (req, res, next) => {
     try{
         const user = await User.findByIdAndUpdate(req.params.id, req.body, {new: true});
@@ -55,7 +55,7 @@ exports.editUser = async (req, res, next) => {
     }
 }
 
-//delete user
+//delete admin
 exports.deleteUser = async (req, res, next) => {
     try{
         const user = await User.findByIdAndDelete(req.params.id);

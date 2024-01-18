@@ -1,9 +1,9 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux';
-import {composeWithDevTools, devToolsEnhancer} from '@redux-devtools/extension';
+import {composeWithDevTools} from '@redux-devtools/extension';
 import {thunk} from 'redux-thunk';
 import { loadJobReducer } from './reducers/jobReducer';
 import {loadJobTypeReducer} from "./reducers/jobTypeReducer.js";
-import {userReducerLogout, userReducerProfile, userReducerSignIn} from "./reducers/UserReducer.js";
+import {userReducerSignIn, userReducerLogout, userReducerProfile} from "./reducers/UserReducer.js";
 
 // combine reducers
 const reducer = combineReducers({

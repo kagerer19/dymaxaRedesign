@@ -32,7 +32,7 @@ const LogIn = () => {
     const {isAuthenticated} = useSelector(state => state.signIn);
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('../user/UserDashboard');
+            navigate('../admin/AdminDashboard');
         }
     }, [isAuthenticated])
 

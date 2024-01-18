@@ -27,7 +27,7 @@ const LoginOptions = () => {
         handleClose();
     };
 
-    //Logout user
+    //Logout admin
     const logOutUser = () => {
         dispatch(userLogoutAction());
         window.location.reload();
@@ -41,7 +41,7 @@ const LoginOptions = () => {
             <Button onClick={handleClick} disableRipple>
                 <Avatar
                     alt="Remy Sharp"
-                    src="../src/assets/profileImg.JPEG"
+                    src="../src/assets/Dymaxa-logo.png"
                     sx={{width: 36, height: 36}}
                 />
             </Button>
@@ -52,7 +52,7 @@ const LoginOptions = () => {
             >
                 <MenuItem onClick={handleClose}>
                     <Typography sx={{'&:hover': {color: '#7bf1a8'}}} textAlign="center">
-                        <Link to="/user/userDashboard">Dashboard</Link>
+                        <Link to="/admin/AdminDashboard">Dashboard</Link>
                     </Typography>
                 </MenuItem>
                 {

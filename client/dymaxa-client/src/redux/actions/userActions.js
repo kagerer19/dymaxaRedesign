@@ -28,22 +28,6 @@ export const userSignInAction = (user) => async (dispatch) => {
 }
 
 
-//User Action
-export const userProfileAction = (user) => async (dispatch) => {
-    dispatch({type: USER_LOAD_REQUEST});
-    try {
-        const {data} = await axios.post("http://localhost:8000/api/me");
-        dispatch({
-            type: USER_LOAD_SUCCESS,
-            payload: data
-        });
-    } catch (error) {
-        dispatch({
-            type: USER_LOAD_FAIL,
-            payload: error.response.data.error
-        });
-    }
-}
 
 
 //Logout action
@@ -63,6 +47,24 @@ export const userLogoutAction = () => async (dispatch) => {
             payload: error.response.data.error
         });
         toast.error(error.response.data.error);
+    }
+}
+
+//admin profile action
+export const userProfileAction = () => async (dispatch) => {
+    dispatch({ type: USER_LOAD_REQUEST });
+    try {
+        const { data } = await axios.get("http://localhost:8000/api/me");
+        dispatch({
+            type: USER_LOAD_SUCCESS,
+            payload: data
+        });
+
+    } catch (error) {
+        dispatch({
+            type: USER_LOAD_FAIL,
+            payload: error.response.data.error
+        });
     }
 }
 

@@ -2,7 +2,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const jwt = require("jsonwebtoken");
 const user = require("../models/userModel");
 
-// check if user is authenticated
+// check if admin is authenticated
 exports.isAuthenticated = async (req, res, next) => {
     const { token } = req.cookies;
     //Make sure token exists

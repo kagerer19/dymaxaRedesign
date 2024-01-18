@@ -1,10 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+var cors = require('cors');
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-var cors = require('cors');
 
 
 // import routes
@@ -33,7 +33,7 @@ const connectDB = async () => {
 
 //MIDDLEWARE
 app.use(morgan('dev'));
-app.use(bodyParser.json({ limit: "5mb" }));
+app.use(bodyParser.json({ limit: "15mb" }));
 app.use(bodyParser.urlencoded({
     limit: "15mb",
     extended: true

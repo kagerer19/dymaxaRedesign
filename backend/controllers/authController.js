@@ -32,7 +32,7 @@ exports.signin = async (req, res, next) => {
             return next(new ErrorResponse("Please add a password", 403))
         }
 
-        //Check user email
+        //Check admin email
         const user = await User.findOne({email});
 
         if (!user) {
@@ -70,10 +70,9 @@ exports.logout = (req, res, next) => {
     })
 }
 
-//user profile
+//admin profile
 exports.userProfile = async (req, res, next) => {
     const user = await User.findById(req.user.id).select('-password');
-
     res.status(200).json({
         success: true,
         user

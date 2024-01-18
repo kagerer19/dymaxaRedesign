@@ -1,6 +1,8 @@
 import {
     USER_LOAD_FAIL,
-    USER_LOAD_REQUEST, USER_LOAD_RESET, USER_LOAD_SUCCESS,
+    USER_LOAD_REQUEST,
+    USER_LOAD_SUCCESS,
+    USER_LOAD_RESET,
     USER_LOGOUT_FAIL,
     USER_LOGOUT_REQUEST, USER_LOGOUT_RESET, USER_LOGOUT_SUCCESS,
     USER_SIGNIN_FAIL,
@@ -16,8 +18,8 @@ export const userReducerSignIn = (state = { state: [] }, action) => {
         case USER_SIGNIN_SUCCESS:
             return {
                 loading: false,
-                userInfo: action.payload,
                 isAuthenticated: true,
+                userInfo: action.payload,
             }
         case USER_SIGNIN_FAIL:
             return {
@@ -27,6 +29,29 @@ export const userReducerSignIn = (state = { state: [] }, action) => {
                 error: action.payload
             }
         case USER_SIGNIN_RESET:
+            return {}
+        default:
+            return state;
+    }
+}
+
+//User Profile
+export const userReducerProfile = (state = { user: null }, action) => {
+    switch (action.type) {
+        case USER_LOAD_REQUEST:
+            return { loading: true, user: null}
+        case USER_LOAD_SUCCESS:
+            return {
+                loading: false,
+                user: action.data
+            }
+        case USER_LOAD_FAIL:
+            return {
+                loading: false,
+                user: null,
+                error: action.payload
+            }
+        case USER_LOAD_RESET:
             return {}
         default:
             return state;
@@ -49,29 +74,6 @@ export const userReducerLogout = (state = { state: [] }, action) => {
                 error: action.payload
             }
         case USER_LOGOUT_RESET:
-            return {}
-        default:
-            return state;
-    }
-}
-
-//User Profile
-export const userReducerProfile = (state = { user: null }, action) => {
-    switch (action.type) {
-        case USER_LOAD_REQUEST:
-            return { loading: true, user: null}
-        case USER_LOAD_SUCCESS:
-            return {
-                loading: false,
-                userInfo: action.payload
-            }
-        case USER_LOAD_FAIL:
-            return {
-                loading: false,
-                user: null,
-                error: action.payload
-            }
-        case USER_LOAD_RESET:
             return {}
         default:
             return state;

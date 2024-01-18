@@ -27,7 +27,6 @@ export const jobType_LoadAction = () => async (dispatch) => {
             });
         }
     } catch (error) {
-        // Handle any other errors (e.g., network issues)
         dispatch({
             type: JOB_TYPE_LOAD_RESET,
             payload: error.message,

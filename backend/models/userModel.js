@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const {ObjectId} = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const {ObjectId} = mongoose.Schema;
 
 const jobHistorySchema = new mongoose.Schema({
 
@@ -73,7 +73,7 @@ const userSchema = new mongoose.Schema({
 
     role: {
         type: Number,
-        default: 1
+        default: 0
     }
 }, {timestamps: true})
 
@@ -93,9 +93,10 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 
 //return jwt
 userSchema.methods.getJwtToken = function () {
-    return jwt.sign({id: this.id}, process.env.JWT_SECRET, {
+    return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
         expiresIn: 3600
     });
 }
+
 
 module.exports = mongoose.model("User", userSchema);
