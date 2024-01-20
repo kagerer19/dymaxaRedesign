@@ -10,13 +10,16 @@ import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
 import Layout from "./pages/global/Layout.jsx";
 import CurrentJobs from "./pages/admin/CurrentJobs.jsx";
-import JobPage from "./pages/JobPage.jsx";
+import JobsPage from "./pages/JobsPage.jsx";
+import JobDescriptionPage from "./pages/JobDescriptionPage.jsx";
+import CreateJob from "./pages/admin/CreateJob.jsx";
 
 
 
 //HOC- higher order Components
 const AdminDashboardHOC = Layout(AdminDashboard)
 const CurrentJobsHOC = Layout(CurrentJobs)
+const DashCreateJobHOC = Layout(CreateJob)
 function App() {
     return (
         <>
@@ -25,13 +28,14 @@ function App() {
                 <BrowserRouter>
                     <Routes>
                         <Route path='/' element={<Home/>}/>
-                        <Route path='/JobPage' element={<JobPage/>}/>
-                        <Route path='/search/location/:location' element={<JobPage/>}/>
-                        <Route path='/search/:keyword' element={<JobPage/>}/>
+                        <Route path='/JobsPage' element={<JobsPage/>}/>
+                        <Route path='/search/location/:location' element={<JobsPage/>}/>
+                        <Route path='/search/:keyword' element={<JobsPage/>}/>
+                        <Route path='/JobDescriptionPage/:id' element={<JobDescriptionPage/>}/>
                         <Route path='/LoginPage' element={<LoginPage/>}/>
                         <Route path='/admin/AdminDashboard' element={<AdminRoute><AdminDashboardHOC/></AdminRoute>}/>
                         <Route path='/admin/CurrentJobs' element={<AdminRoute><CurrentJobsHOC/></AdminRoute>}/>
-                        <Route path='/user/jobs' element={<AdminRoute><CurrentJobsHOC/></AdminRoute>}/>
+                        <Route path='/CreateJob' element={<AdminRoute><DashCreateJobHOC /></AdminRoute>} />
                         <Route path='*' element={<NotFound/>}/>
                     </Routes>
                 </BrowserRouter>
