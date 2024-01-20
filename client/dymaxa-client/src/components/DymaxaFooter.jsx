@@ -3,15 +3,16 @@ import {Link} from "react-router-dom";
 
 const DymaxaFooter = () => {
     return (
-        <footer className="flex flex-col justify-around  bottom-0 w-full bg-[#132027] text-white py-6">
-            <div className="container flex flex-col md:flex-row justify-between items-center">
+        <footer className="flex flex-col justify-around bottom-0 w-full bg-[#132027] text-white py-6">
+            <div className="container flex flex-col md:flex-row justify-between items-center h-full">
                 <div className="flex items-center flex-col mb-5 md:mb-0">
-                    <img className={"header-logo"} src={"src/assets/Dymaxa-logo.png"} alt={"Four leaf clover"}/>
+                    <img className={"header-logo"} src={"/src/assets/Dymaxa-logo.png"} alt={"Four leaf clover"}/>
                     <a className="flex items-center gap-3 text-lg font-semibold sm:text-base md:text-lg mt-2 md:mt-0 hover:text-gray-300"
                        href="/">
                         <span>Dymaxa Recruiting</span>
                     </a>
-                    <div className="ml-8 mt-4 text-center text-sm text-gray-500 md:text-base">© 2024 Dymaxa Recruiting. All
+                    <div className="ml-8 mt-4 text-center text-sm text-gray-500 md:text-base">© 2024 Dymaxa Recruiting.
+                        All
                         Rights Reserved.
                     </div>
                 </div>
