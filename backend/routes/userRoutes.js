@@ -14,7 +14,7 @@ router.get('/user/:id',isAuthenticated, singleUser);
 router.put('/user/edit/:id',isAuthenticated, editUser);
 
 // api/admin/admin/delete/id
-router.delete('/admin/user/delete/:id',isAuthenticated, isAdmin, deleteUser);
+router.delete('/admin/user/delete/:id', deleteUser);
 
 // api/admin/jobhistory/'
 router.post('/user/jobhistory',isAuthenticated,  createUserJobsHistory);
