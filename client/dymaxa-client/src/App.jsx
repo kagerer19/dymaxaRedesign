@@ -7,12 +7,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ProSidebarProvider } from "react-pro-sidebar";
 import LoginPage from "./pages/LoginPage.jsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
-import AdminRoute from "./components/AdminRoute.jsx";
+import AdminRoute from "./pages/admin/AdminRoute.jsx";
 import Layout from "./pages/global/Layout.jsx";
 import CurrentJobs from "./pages/admin/CurrentJobs.jsx";
 import JobsPage from "./pages/JobsPage.jsx";
 import JobDescriptionPage from "./pages/JobDescriptionPage.jsx";
 import CreateJob from "./pages/admin/CreateJob.jsx";
+import UpdateJob from "./pages/admin/UpdateJob.jsx";
 
 
 
@@ -20,6 +21,7 @@ import CreateJob from "./pages/admin/CreateJob.jsx";
 const AdminDashboardHOC = Layout(AdminDashboard)
 const CurrentJobsHOC = Layout(CurrentJobs)
 const DashCreateJobHOC = Layout(CreateJob)
+const DashUpdateJobHOC = Layout(UpdateJob)
 function App() {
     return (
         <>
@@ -35,7 +37,8 @@ function App() {
                         <Route path='/LoginPage' element={<LoginPage/>}/>
                         <Route path='/admin/AdminDashboard' element={<AdminRoute><AdminDashboardHOC/></AdminRoute>}/>
                         <Route path='/admin/CurrentJobs' element={<AdminRoute><CurrentJobsHOC/></AdminRoute>}/>
-                        <Route path='/CreateJob' element={<AdminRoute><DashCreateJobHOC /></AdminRoute>} />
+                        <Route path='/CreateJob' element={<DashCreateJobHOC />} />
+                        <Route path='/UpdateJob/:id' element={<DashUpdateJobHOC />} />
                         <Route path='*' element={<NotFound/>}/>
                     </Routes>
                 </BrowserRouter>
