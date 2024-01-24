@@ -135,8 +135,25 @@ a {
     list-style: none;
 }
 
+.main-job-content {
+    white-space: pre-line;
+    vertical-align: bottom;
+    content: "\00a0 \00a0";
+    margin-bottom: 3rem;
+}
+
 @media (max-width: 600px) {
     .search {
         max-width: 100%; /* Allow the search bar to take full width on smaller screens */
     }
+}
+
+/*Drop Zone Styles */
+
+.dropzoneStyles {
+    border: 2px dashed #cccccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
 }
