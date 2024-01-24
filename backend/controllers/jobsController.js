@@ -1,5 +1,4 @@
 const Job = require('../models/jobsModel');
-const JobType = require('../models/jobTypeModel');
 const ErrorResponse = require('../utils/errorResponse');
 
 //create job
@@ -10,21 +9,24 @@ exports.createJob = async (req, res, next) => {
             description: req.body.description,
             salary: req.body.salary,
             location: req.body.location,
-            jobType: req.body.jobType,
             employmentType: req.body.employmentType,
-            user: req.user.id
+            requirements: req.body.requirements,
+            behaviouralCompetency: req.body.behaviouralCompetency,
+            duties: req.body.duties,
         });
+
         res.status(201).json({
             success: true,
             job
-        })
+        });
     } catch (error) {
         next(error);
     }
-}
+};
 
 
-//single job
+
+//show single job
 exports.singleJob = async (req, res, next) => {
     try {
         const job = await Job.findById(req.params.id);
@@ -38,13 +40,50 @@ exports.singleJob = async (req, res, next) => {
 }
 
 
-//update job by id.
+// Update job by id.
 exports.updateJob = async (req, res, next) => {
     try {
-        const job = await Job.findByIdAndUpdate(req.params.job_id, req.body, { new: true }).populate('jobType', 'jobTypeName').populate('user', 'firstName lastName');
+        const jobId = req.params.job_id;
+
+        // Check if the job with the given ID exists
+        const existingJob = await Job.findById(jobId);
+        if (!existingJob) {
+            return res.status(404).json({
+                success: false,
+                error: 'Job not found',
+            });
+        }
+
+        // Update the job
+        const updatedJob = await Job.findByIdAndUpdate(jobId, req.body, { new: true });
+
+        // Check if the update was successful
+        if (!updatedJob) {
+            return res.status(500).json({
+                success: false,
+                error: 'Error updating job',
+            });
+        }
+
+        // Send the updated job as a response
         res.status(200).json({
             success: true,
-            job
+            job: updatedJob,
+        });
+    } catch (error) {
+        // Handle other errors
+        next(error);
+    }
+};
+
+
+// delete job
+exports.deleteJob = async (req, res, next) => {
+    try {
+        const job = await Job.findByIdAndDelete(req.params.job_id);
+        res.status(200).json({
+            success: true,
+            message: "job deleted."
         })
     } catch (error) {
         next(error);
@@ -63,18 +102,6 @@ exports.showJobs = async (req, res, next) => {
         }
     } : {}
 
-
-    // filter jobs by category ids
-    let ids = [];
-    const jobTypeCategory = await JobType.find({}, { _id: 1 });
-    jobTypeCategory.forEach(cat => {
-        ids.push(cat._id);
-    })
-
-    let cat = req.query.cat;
-    let categ = cat !== '' ? cat : ids;
-
-
     //jobs by location
     let locations = [];
     const jobByLocation = await Job.find({}, { location: 1 });
@@ -90,10 +117,10 @@ exports.showJobs = async (req, res, next) => {
     const pageSize = 4;
     const page = Number(req.query.pageNumber) || 1;
     //const count = await Job.find({}).estimatedDocumentCount();
-    const count = await Job.find({ ...keyword, jobType: categ, location: locationFilter }).countDocuments();
+    const count = await Job.find({ ...keyword, location: locationFilter }).countDocuments();
 
     try {
-        const jobs = await Job.find({ ...keyword, jobType: categ, location: locationFilter }).sort({ createdAt: -1 }).skip(pageSize * (page - 1)).limit(pageSize)
+        const jobs = await Job.find({ ...keyword, location: locationFilter }).sort({ createdAt: -1 }).skip(pageSize * (page - 1)).limit(pageSize)
         res.status(200).json({
             success: true,
             jobs,
