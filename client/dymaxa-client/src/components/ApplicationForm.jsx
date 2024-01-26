@@ -7,21 +7,31 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import DOMPurify from 'dompurify';
 import {toast} from 'react-toastify';
 import {sendFormDataToServer} from "../utilities/emailApi.js";
 import {loadSingleJobAction} from "../redux/actions/jobActions.js";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
+import { useFormik } from 'formik';
+import * as yup from "yup";
+
+const ApplicationValidation = yup.object({
+    firstName: yup.string().required('First Name is required'),
+    lastName: yup.string().required('Last Name is required'),
+    email: yup.string().email('Invalid email address').required('Email is required'),
+    contactNumber: yup.string().matches(/^\d+$/, 'Invalid phone number').required('Contact Number is required'),
+    url: yup.string().url('Invalid URL').required('LinkedIn Profile URL is required'),
+    introText: yup.string().required('Additional Information is required'),
+});
 
 const ApplicationForm = () => {
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [privacyPolicyOpen, setPrivacyPolicyOpen] = useState(false);
     const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
     const dispatch = useDispatch();
-    const {id} = useParams();
-    const {singleJob} = useSelector(state => state.singleJob)
+    const { id } = useParams();
+    const { singleJob } = useSelector((state) => state.singleJob);
     const navigate = useNavigate();
 
     //Handle Privacy Policy
@@ -35,12 +45,10 @@ const ApplicationForm = () => {
         setPrivacyPolicyAccepted(true);
     };
 
-
     //Store files from DropZone
     const onDrop = useCallback((acceptedFiles) => {
         setSelectedFiles([...selectedFiles, ...acceptedFiles]);
     }, [selectedFiles]);
-
 
     // Fetch jobId for email submission
     useEffect(() => {
@@ -51,46 +59,54 @@ const ApplicationForm = () => {
         fetchData();
     }, [id, dispatch]);
 
+    // Initialize formik hook
+    const formik = useFormik({
+        initialValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            contactNumber: '',
+            url: '',
+            introText: '',
+        },
+        validationSchema: ApplicationValidation,
+        onSubmit: async (values) => {
+            try {
+                if (!singleJob) {
+                    console.error('Error: singleJob is undefined');
+                    return;
+                }
 
-    //Handle Submission of form
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+                if (!privacyPolicyAccepted) {
+                    toast.error('Please accept the privacy policy before submitting the application.');
+                    return;
+                }
 
-        if (!singleJob) {
-            console.error('Error: singleJob is undefined');
-            return;
-        }
+                // Gather form data for email API
+                const formData = {
+                    firstName: formik.values.firstName,
+                    lastName: formik.values.lastName,
+                    email: formik.values.email,
+                    contactNumber: formik.values.contactNumber,
+                    url: formik.values.url,
+                    introText: formik.values.introText,
+                    jobId: singleJob._id,
+                };
+                // Send data to backend
+                await sendFormDataToServer(formData, selectedFiles);
+                toast.success('Application successful');
+                navigate('/JobsPage');
+            } catch (error) {
+                // Handle validation errors
+                const errors = {};
+                error.inner.forEach((e) => {
+                    errors[e.path] = e.message;
+                });
+                formik.setErrors(errors);
+            }
+        },
+    });
 
-        if (!privacyPolicyAccepted) {
-            toast.error("Please accept the privacy policy before submitting the application.");
-            return;
-        }
-
-
-
-        //Gather form data for email API
-        const formData = {
-            firstName: DOMPurify(event.target.firstName.value),
-            lastName: DOMPurify(event.target.lastName.value),
-            email: DOMPurify(event.target.email.value),
-            contactNumber: DOMPurify(event.target.contactNumber.value),
-            url: DOMPurify(event.target.url.value),
-            introText: DOMPurify(event.target.introText.value),
-            jobId: singleJob._id
-        };
-
-        try {
-            //Send data to backend
-            await sendFormDataToServer(formData, selectedFiles);
-            toast.success('Application successful');
-            navigate('/JobsPage');
-        } catch (error) {
-            console.error('Error sending data to server:', error);
-            toast.error('An error occurred with your application');
-        }
-
-        setSelectedFiles([]);
-    };
 
     const {getRootProps, getInputProps} = useDropzone({onDrop});
 
@@ -107,7 +123,7 @@ const ApplicationForm = () => {
                     <Typography sx={{marginBottom: 6}} color={'#33485E'} variant="h4">
                         Apply For This Job
                     </Typography>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={formik.handleSubmit}>
                         <Grid container spacing={2} justifyContent="center">
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -117,6 +133,10 @@ const ApplicationForm = () => {
                                     fullWidth
                                     id="firstName"
                                     label="First Name"
+                                    value={formik.values.firstName}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                    helperText={formik.touched.firstName && formik.errors.firstName}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -127,6 +147,10 @@ const ApplicationForm = () => {
                                     fullWidth
                                     id="lastName"
                                     label="Last Name"
+                                    value={formik.values.lastName}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                                    helperText={formik.touched.lastName && formik.errors.lastName}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -138,6 +162,10 @@ const ApplicationForm = () => {
                                     type="email"
                                     id="email"
                                     label="Email Address"
+                                    value={formik.values.email}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.email && Boolean(formik.errors.email)}
+                                    helperText={formik.touched.email && formik.errors.email}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -147,28 +175,45 @@ const ApplicationForm = () => {
                                     id="contact"
                                     label="Contact Number"
                                     fullWidth
+                                    value={formik.values.contactNumber}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.contactNumber && Boolean(formik.errors.contactNumber)}
+                                    helperText={formik.touched.contactNumber && formik.errors.contactNumber}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     name="url"
-                                    type="url"  // Use 'url' as the type for a URL input
+                                    type="url"
                                     id="url"
                                     label="LinkedIn Profile URL"
                                     fullWidth
+                                    value={formik.values.url}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.url && Boolean(formik.errors.url)}
+                                    helperText={formik.touched.url && formik.errors.url}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField name="introText" type="text" id="introText"
-                                           label="Anything else we should know, availability, etc.?" fullWidth/>
+                                <TextField
+                                    name="introText"
+                                    type="text"
+                                    id="introText"
+                                    label="Anything else we should know, availability, etc.?"
+                                    fullWidth
+                                    value={formik.values.introText}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.introText && Boolean(formik.errors.introText)}
+                                    helperText={formik.touched.introText && formik.errors.introText}
+                                />
                             </Grid>
                             <Grid item xs={12}>
                                 <div {...getRootProps()} className={'dropzoneStyles'}>
                                     <input {...getInputProps()} />
                                     {selectedFiles.length > 0 ? (
-                                        <UploadFileRoundedIcon style={{fontSize: 48, color: '#7bf1a8'}}/>
+                                        <UploadFileRoundedIcon style={{ fontSize: 48, color: '#7bf1a8' }} />
                                     ) : (
-                                        <UploadFileIcon style={{fontSize: 48, color: '#33485E'}}/>
+                                        <UploadFileIcon style={{ fontSize: 48, color: '#33485E' }} />
                                     )}
                                     {selectedFiles.length > 0 ? (
                                         <ul>
@@ -186,13 +231,12 @@ const ApplicationForm = () => {
                                 </div>
                             </Grid>
                         </Grid>
-                        <Button sx={{alignSelf: "center"}} onClick={openPrivacyPolicy}>
+                        <Button sx={{ alignSelf: "center" }} onClick={openPrivacyPolicy}>
                             * Please Read and accept the privacy policy to apply
                         </Button>
-                        <PrivacyPolicy isOpen={privacyPolicyOpen} onAccept={acceptPrivacyPolicy}
-                                       onClose={closePrivacyPolicy}/>
+                        <PrivacyPolicy isOpen={privacyPolicyOpen} onAccept={acceptPrivacyPolicy} onClose={closePrivacyPolicy} />
 
-                        <div style={{width: '100%', textAlign: 'center'}}>
+                        <div style={{ width: '100%', textAlign: 'center' }}>
                             <Button
                                 type="submit"
                                 variant="contained"
