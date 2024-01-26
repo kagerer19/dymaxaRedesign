@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
     "bcryptjs": "^2.4.3",
@@ -11,12 +14,16 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.8",
+    "nodemailer-html-to-text": "^3.2.0",
+    "resend": "^0.16.0",
     "routes": "^2.1.0"
   },
   "name": "dymaxaredesign",
   "description": "## Overview",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "nodemon emailServer.js",
   "scripts": {
     "start": "nodemon app.js",
     "app": "nodemon app.js",
