@@ -13,8 +13,9 @@ import {loadSingleJobAction} from "../redux/actions/jobActions.js";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
-import { useFormik } from 'formik';
+import {useFormik, useFormikContext} from 'formik';
 import * as yup from "yup";
+import DOMPurify from "dompurify";
 
 const ApplicationValidation = yup.object({
     firstName: yup.string().required('First Name is required'),
@@ -22,7 +23,7 @@ const ApplicationValidation = yup.object({
     email: yup.string().email('Invalid email address').required('Email is required'),
     contactNumber: yup.string().matches(/^\d+$/, 'Invalid phone number').required('Contact Number is required'),
     url: yup.string().url('Invalid URL').required('LinkedIn Profile URL is required'),
-    introText: yup.string().required('Additional Information is required'),
+    introText: yup.string(),
 });
 
 const ApplicationForm = () => {
@@ -84,12 +85,12 @@ const ApplicationForm = () => {
 
                 // Gather form data for email API
                 const formData = {
-                    firstName: formik.values.firstName,
-                    lastName: formik.values.lastName,
-                    email: formik.values.email,
-                    contactNumber: formik.values.contactNumber,
-                    url: formik.values.url,
-                    introText: formik.values.introText,
+                    firstName: DOMPurify.sanitize(formik.values.firstName),
+                    lastName: DOMPurify.sanitize(formik.values.lastName),
+                    email: DOMPurify.sanitize(formik.values.email),
+                    contactNumber: DOMPurify.sanitize(formik.values.contactNumber),
+                    url: DOMPurify.sanitize(formik.values.url),
+                    introText: DOMPurify.sanitize(formik.values.introText),
                     jobId: singleJob._id,
                 };
                 // Send data to backend
