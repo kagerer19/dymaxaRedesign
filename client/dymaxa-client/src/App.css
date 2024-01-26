@@ -23,6 +23,11 @@ a {
     color: #b0b0b0;
 }
 
+h2, h3 {
+    font-weight: bolder;
+    font-size: larger;
+}
+
 .hero-screen {
     background-image: url("../src/assets/jobs-screen-1-darker.png");
     background-repeat: no-repeat;
@@ -156,4 +161,9 @@ a {
     padding: 20px;
     text-align: center;
     cursor: pointer;
+}
+
+/* Privacy Policy */
+.privacy-policy > ul > li {
+    list-style: disc;
 }
