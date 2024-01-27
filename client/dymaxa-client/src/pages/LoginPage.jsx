@@ -1,18 +1,16 @@
 import {Avatar, Box, Checkbox, Container, FormControlLabel, Grid, Paper} from '@mui/material'
 import React, {useEffect} from 'react'
-import DymaxaHeader from "../components/DymaxaHeader.jsx";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useFormik} from 'formik';
 import * as yup from 'yup';
 import {useDispatch, useSelector} from 'react-redux'
 import {userSignInAction} from '../redux/actions/userActions.js'
-import {Link, useNavigate} from 'react-router-dom'
-import AdminLogin from "../components/LoginOptions.jsx";
+import {Navigate, useNavigate} from 'react-router-dom'
 import DymaxaFooter from "../components/DymaxaFooter.jsx";
-import {border, ThemeProvider} from "@mui/system";
 import Typography from "@mui/material/Typography";
-import {Copyright} from "@mui/icons-material";
+import DymaxaHeader from "../components/DymaxaHeader.jsx";
+import hasAdminCookie from "../utilities/cookieUtils.js";
 
 const validationSchema = yup.object({
     email: yup
@@ -32,7 +30,7 @@ const LogIn = () => {
     const {isAuthenticated} = useSelector(state => state.signIn);
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('../admin/AdminDashboard');
+            navigate('../admin/CurrentJobs');
         }
     }, [isAuthenticated])
 
@@ -49,8 +47,16 @@ const LogIn = () => {
 
     })
 
+    const isAdmin = hasAdminCookie();
+
+    //redirect to coming soon page
+    if(!isAdmin) {
+        return <Navigate to={"/ComingSoon"} />
+    }
+
     return (
         <>
+            <DymaxaHeader/>
             <Grid container component="main" sx={{height: '82vh'}}>
                 <Grid
                     item
@@ -84,8 +90,8 @@ const LogIn = () => {
                         }}
                     >
                         <Avatar
-                            src="../src/assets/profileImg.JPEG"
-                            sx={{m: 1, bgcolor: 'secondary.main'}}
+                            src="../src/assets/Dymaxa-logo.png"
+                            sx={{m: 1}}
                         />
                         <Typography component="h1" variant="h5">
                             Sign in
