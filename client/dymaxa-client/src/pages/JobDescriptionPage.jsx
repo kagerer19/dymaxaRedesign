@@ -1,141 +1,130 @@
-import React, {useState} from 'react';
-import DymaxaHeader from "../components/DymaxaHeader.jsx";
-import DymaxaFooter from "../components/DymaxaFooter.jsx";
+import React, {useEffect} from 'react';
+import DymaxaHeader from '../components/DymaxaHeader.jsx';
+import DymaxaFooter from '../components/DymaxaFooter.jsx';
+import {Box, Container} from '@mui/material';
+import LoadingBox from '../components/LoadingBox.jsx';
+import {useDispatch, useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
+import {loadSingleJobAction} from '../redux/actions/jobActions.js';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ApplicationForm from '../components/ApplicationForm.jsx';
+import {AlternateEmail, Paid, PriceCheck} from "@mui/icons-material";
 
-export function JobDescriptionPage() {
-
-    // React state hooks for form fields and errors
-    const [companyName, setCompanyName] = useState('');
-    const [contactPerson, setContactPerson] = useState('');
-    const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
-    const [errors, setErrors] = useState([]);
-
-    // React state hook for success message
-    const [successMessage, setSuccessMessage] = useState('');
-
-    // Function to handle form submission
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        // Validation logic
-        const validationErrors = [];
-        if (!companyName) validationErrors.push('Company Name is required');
-        if (!phone) validationErrors.push('Phone number is required');
-        if (phone && !/^\d+$/.test(phone)) validationErrors.push('Phone number should contain only digits');
-
-        if (validationErrors.length > 0) {
-            setErrors(validationErrors);
-            return;
-        }
-
-        // Submit data to the server (you may need to adjust this part based on your backend logic)
-        try {
-            const response = await fetch('API_ENDPOINT_HERE', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    companyName,
-                    contactPerson,
-                    phone,
-                    address,
-                }),
-            });
-
-            const result = await response.json();
-
-            if (result === 'Data Inserted') {
-                // Display success message
-                setSuccessMessage('Client created successfully');
-
-                // Redirect to the dashboard upon successful client creation
-                history.push('/dashboard');
-            } else {
-                // Display server error message
-            }
-        } catch (error) {
-            // Handle fetch error
-            console.error('Error:', error);
-        }
-    };
+const JobDescriptionPage = () => {
+    const dispatch = useDispatch();
+    const {singleJob, loading} = useSelector(state => state.singleJob)
+    const {id} = useParams();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        dispatch(loadSingleJobAction(id));
+    }, [id]);
 
     return (
         <>
             <DymaxaHeader/>
-            <form action="#" method="post">
-                <div className="rounded-lg border bg-card text-card-foreground shadow-sm mx-auto max-w-md mt-20 mb-20"
-                     style={{backgroundColor: '#F8F7F1'}}>
-                    <div className="space-y-2 text-center p-4">
-                        <h1 className="text-3xl font-bold">Client Registration</h1>
-                        <p className="text-gray-500 dark:text-gray-400"></p>
-                    </div>
-                    <div className="space-y-4 p-6">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium leading-none" htmlFor="company-name">
-                                Company Name
-                            </label>
-                            <input
-                                className="flex h-10 w-full rounded-md border border-input bg-background px-4 py-2 text-sm ring-offset-background"
-                                id="company-name"
-                                name="company-name"
-                                placeholder="Your Company Name"
-                                required=""
-                                value={companyName}
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium leading-none" htmlFor="contact-person">
-                                Contact Person
-                            </label>
-                            <input
-                                className="flex h-10 w-full rounded-md border border-input bg-background px-4 py-2 text-sm ring-offset-background"
-                                id="contact-person"
-                                name="contact-person"
-                                placeholder="John Doe"
-                                required=""
-                                value={contactPerson}
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium leading-none" htmlFor="phone">
-                                Phone
-                            </label>
-                            <input
-                                className="flex h-10 w-full rounded-md border border-input bg-background px-4 py-2 text-sm ring-offset-background"
-                                id="phone"
-                                name="phone"
-                                placeholder="(123) 456-7890"
-                                required=""
-                                value={phone}
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium leading-none" htmlFor="address">
-                                Address
-                            </label>
-                            <input
-                                className="flex h-10 w-full rounded-md border border-input bg-background px-4 py-2 text-sm ring-offset-background"
-                                id="address"
-                                name="address"
-                                placeholder="123 Main St, City, State, ZIP"
-                                required=""
-                                value={address}
-                            />
-                        </div>
-                        <button
-                            className="text-white bg-[#1A202C] inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
-                            type="submit"
+            <div className="flex flex-col items-center">
+                <Container
+                    className="w-full md:w-[50%] p-2 min-h-10em max-w-2xl mb-4"
+                >
+                    {loading ? (
+                        <LoadingBox/>
+                    ) : singleJob && singleJob.title ? (
+                        <div
+                            style={{minWidth: '56.25vh', minHeight: '75vh'}}
+                            className="p-6 border rounded-lg shadow bg-[#F8F7F2] text-[#4a5568] mb-4"
                         >
-                            Create Client
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <DymaxaFooter />
+                            <h1 className="text-lg font-semibold mb-3">{singleJob && singleJob.title}</h1>
+                            <p className={'main-job-content'}>{singleJob && singleJob.description}</p>
+
+
+                            {/* Render Requirements */}
+                            <div className="requirements">
+                                {singleJob &&
+                                    singleJob.requirements &&
+                                    singleJob.requirements.length > 0 && (
+                                        <div>
+                                            <h3 className="font-semibold mb-2">Requirements:</h3>
+                                            <ul className="custom-list-style mb-7">
+                                                {singleJob.requirements.map((requirement, index) => (
+                                                    <li key={index}>
+                                                        {/* Apply custom list style */}
+                                                        <span className="custom-bullet">&#8226;</span> {requirement}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                            </div>
+                            <div className="duties">
+                                {singleJob &&
+                                    singleJob.duties &&
+                                    singleJob.duties.length > 0 && (
+                                        <div>
+                                            <h3 className="font-semibold mb-2">Duties:</h3>
+                                            <ul className="custom-list-style mb-7">
+                                                {singleJob.duties.map((duty, index) => (
+                                                    <li key={index}>
+                                                        {/* Apply custom list style */}
+                                                        <span className="custom-bullet">&#8226;</span> {duty}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                            </div>
+                            {/* Render Behavioral requirements */}
+                            <div className="requirements">
+                                {singleJob &&
+                                    singleJob.behaviouralCompetency &&
+                                    singleJob.behaviouralCompetency.length > 0 && (
+                                        <div>
+                                            <h3 className="font-semibold mb-2">Behavioural Competencies:</h3>
+                                            <ul className="custom-list-style mb-7">
+                                                {singleJob.behaviouralCompetency.map((behaviouralCompetency, index) => (
+                                                    <li key={index}>
+                                                        {/* Apply custom list style */}
+                                                        <span
+                                                            className="custom-bullet">&#8226;</span> {behaviouralCompetency}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                            </div>
+
+                            <ul className="list-disc mt-3 flex gap-6">
+                                <li>
+                                    <Paid/>&nbsp; {singleJob && singleJob.salary}
+                                </li>
+                                <li>
+                                    <strong>
+                                        <LocationOnIcon/>
+                                        {singleJob && singleJob.location}
+                                    </strong>
+                                </li>
+                                <li>
+                                    <strong>Employment Type:</strong>&nbsp; {singleJob && singleJob.employmentType}
+                                </li>
+                            </ul>
+                        </div>
+                    ) : (
+                        <Box
+                            sx={{
+                                minHeight: '35vh',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <h2>No result found!</h2>
+                        </Box>
+                    )}
+                </Container>
+                <ApplicationForm/>
+            </div>
+            <DymaxaFooter/>
         </>
     );
-}
+};
 
 export default JobDescriptionPage;
