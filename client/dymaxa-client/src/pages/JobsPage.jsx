@@ -11,6 +11,7 @@ import truncateText from "../utilities/truncateJobDes.js";
 import LoadingBox from "../components/LoadingBox.jsx";
 import LoginOptions from "../components/LoginOptions.jsx";
 import {Paid} from "@mui/icons-material";
+import DymaxaHeader from "../components/DymaxaHeader.jsx";
 
 
 const JobsPage = () => {
@@ -24,31 +25,15 @@ const JobsPage = () => {
 
     useEffect(() => {
         dispatch(jobLoadAction(page, keyword, cat, location));
+        window.scrollTo(0, 0);
     }, [page, keyword, cat, location, id]);
-
-    const handleChangeCategory = (e) => {
-        setCat(e.target.value);
-    }
     return (
         <>
-            <header
-                className="px-4 md:px-6 h-16 md:h-20 flex justify-around items-center bg-[#F8F7F2] text-gray-700 border-b-2 border-[#7bf1a8]">
-                <div className="flex items-center mb-2 md:mb-0 align-middle">
-                    <img className={"header-logo md:mt-0 mt-3"} src={"src/assets/Dymaxa-logo.png"}
-                         alt={"Four leaf clover"}/>
-                    <a className="hidden md:flex items-center gap-3 text-lg font-semibold sm:text-base mr-4 mb-1 hover:text-gray-300"
-                       href="/">
-                        <span className="hidden md:inline text-black">Dymaxas Recruiting</span>
-                    </a>
-                </div>
-                <div className="flex items-center gap-5">
-                    <NavRecruit/>
-                    <LoginOptions/>
-                </div>
-            </header>
+            <DymaxaHeader/>
             <JobsHero/>
-            <Container sx={{}}>
+            <Container>
                 <Stack
+                    sx={{}}
                     direction={{xs: 'column', sm: 'row'}}
                     spacing={{xs: 1, sm: 2, md: 4}}
 
@@ -80,7 +65,7 @@ const JobsPage = () => {
                                         key={i}
                                         id={id}
                                         sx={{
-                                            minWidth: { xs: '100%', sm: '50%', md: '33%', lg: '25%' },
+                                            minWidth: {xs: '100%', sm: '50%', md: '33%', lg: '25%'},
                                             p: 3,
                                             border: '0.5px solid rgba(74,85,104,0.28)',
                                             shadow: 2,
@@ -95,13 +80,13 @@ const JobsPage = () => {
                                         <Typography variant="body1" mb={2}>
                                             {truncateText(job.description, 40)}
                                         </Typography>
-                                        <ul style={{ listStyleType: 'none' }} className="flex gap-6">
+                                        <ul style={{listStyleType: 'none'}} className="flex gap-6">
                                             <li>
-                                                <Paid /> {job.salary}
+                                                <Paid/> {job.salary}
                                             </li>
                                             <li>
                                                 <strong>
-                                                    <LocationOnIcon />
+                                                    <LocationOnIcon/>
                                                     {job.location}
                                                 </strong>
                                             </li>

@@ -13,9 +13,10 @@ import {loadSingleJobAction} from "../redux/actions/jobActions.js";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
-import {useFormik, useFormikContext} from 'formik';
+import {useFormik} from 'formik';
 import * as yup from "yup";
 import DOMPurify from "dompurify";
+import LoadingBox from "./LoadingBox.jsx";
 
 const ApplicationValidation = yup.object({
     firstName: yup.string().required('First Name is required'),
@@ -30,9 +31,10 @@ const ApplicationForm = () => {
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [privacyPolicyOpen, setPrivacyPolicyOpen] = useState(false);
     const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
-    const { id } = useParams();
-    const { singleJob } = useSelector((state) => state.singleJob);
+    const {id} = useParams();
+    const {singleJob} = useSelector((state) => state.singleJob);
     const navigate = useNavigate();
 
     //Handle Privacy Policy
@@ -73,6 +75,7 @@ const ApplicationForm = () => {
         validationSchema: ApplicationValidation,
         onSubmit: async (values) => {
             try {
+                setIsLoading(true);
                 if (!singleJob) {
                     console.error('Error: singleJob is undefined');
                     return;
@@ -104,6 +107,8 @@ const ApplicationForm = () => {
                     errors[e.path] = e.message;
                 });
                 formik.setErrors(errors);
+            } finally {
+                setIsLoading(false); // Set loading state back to false after submission
             }
         },
     });
@@ -112,18 +117,21 @@ const ApplicationForm = () => {
     const {getRootProps, getInputProps} = useDropzone({onDrop});
 
     return (
-            <Box sx={{p: 2}}>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        width: '36rem',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Typography sx={{marginBottom: 6}} color={'#33485E'} variant="h4">
-                        Apply For This Job
-                    </Typography>
+        <Box sx={{p: 2}}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    maxWidth: '36rem',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Typography sx={{marginBottom: 6}} color={'#33485E'} variant="h4">
+                    Apply For This Job
+                </Typography>
+                {isLoading ? (
+                    <LoadingBox/>
+                ) : (
                     <form onSubmit={formik.handleSubmit}>
                         <Grid container spacing={2} justifyContent="center">
                             <Grid item xs={12} sm={6}>
@@ -212,9 +220,9 @@ const ApplicationForm = () => {
                                 <div {...getRootProps()} className={'dropzoneStyles'}>
                                     <input {...getInputProps()} />
                                     {selectedFiles.length > 0 ? (
-                                        <UploadFileRoundedIcon style={{ fontSize: 48, color: '#7bf1a8' }} />
+                                        <UploadFileRoundedIcon style={{fontSize: 48, color: '#7bf1a8'}}/>
                                     ) : (
-                                        <UploadFileIcon style={{ fontSize: 48, color: '#33485E' }} />
+                                        <UploadFileIcon style={{fontSize: 48, color: '#33485E'}}/>
                                     )}
                                     {selectedFiles.length > 0 ? (
                                         <ul>
@@ -232,12 +240,13 @@ const ApplicationForm = () => {
                                 </div>
                             </Grid>
                         </Grid>
-                        <Button sx={{ alignSelf: "center" }} onClick={openPrivacyPolicy}>
+                        <Button sx={{alignSelf: "center"}} onClick={openPrivacyPolicy}>
                             * Please Read and accept the privacy policy to apply
                         </Button>
-                        <PrivacyPolicy isOpen={privacyPolicyOpen} onAccept={acceptPrivacyPolicy} onClose={closePrivacyPolicy} />
+                        <PrivacyPolicy isOpen={privacyPolicyOpen} onAccept={acceptPrivacyPolicy}
+                                       onClose={closePrivacyPolicy}/>
 
-                        <div style={{ width: '100%', textAlign: 'center' }}>
+                        <div style={{width: '100%', textAlign: 'center'}}>
                             <Button
                                 type="submit"
                                 variant="contained"
@@ -257,8 +266,9 @@ const ApplicationForm = () => {
                             </Button>
                         </div>
                     </form>
-                </Box>
+                )}
             </Box>
+        </Box>
     );
 };
 

@@ -9,9 +9,10 @@ const LoadingBox = () => {
                     minHeight: '500px',
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    color: '#7BF1A8'
                 }}>
-                <CircularProgress />
+                <CircularProgress  color='inherit'/>
             </Box>
         </>
     )
