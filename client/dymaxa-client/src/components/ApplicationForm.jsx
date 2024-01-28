@@ -24,6 +24,8 @@ const ApplicationValidation = yup.object({
     email: yup.string().email('Invalid email address').required('Email is required'),
     contactNumber: yup.string().matches(/^\d+$/, 'Invalid phone number').required('Contact Number is required'),
     url: yup.string().url('Invalid URL').required('LinkedIn Profile URL is required'),
+    salaryExpectation: yup.string().matches(/^\d+$/, 'Invalid Input, use numbers only').required('Salary Expectation is required'),
+    earliestStartDate: yup.date(),
     introText: yup.string(),
 });
 
@@ -70,6 +72,8 @@ const ApplicationForm = () => {
             email: '',
             contactNumber: '',
             url: '',
+            salaryExpectation: '',
+            earliestStartDate: '',
             introText: '',
         },
         validationSchema: ApplicationValidation,
@@ -94,6 +98,8 @@ const ApplicationForm = () => {
                     contactNumber: DOMPurify.sanitize(formik.values.contactNumber),
                     url: DOMPurify.sanitize(formik.values.url),
                     introText: DOMPurify.sanitize(formik.values.introText),
+                    salaryExpectation: DOMPurify.sanitize(formik.values.salaryExpectation),
+                    earliestStartDate: formik.values.earliestStartDate,
                     jobId: singleJob._id,
                 };
                 // Send data to backend
@@ -201,6 +207,33 @@ const ApplicationForm = () => {
                                     onChange={formik.handleChange}
                                     error={formik.touched.url && Boolean(formik.errors.url)}
                                     helperText={formik.touched.url && formik.errors.url}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="salaryExpectation"
+                                    type="number"
+                                    id="salaryExpectation"
+                                    label="salaryExpectation"
+                                    fullWidth
+                                    value={formik.values.salaryExpectation}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.salaryExpectation && Boolean(formik.errors.salaryExpectation)}
+                                    helperText={formik.touched.salaryExpectation && formik.errors.salaryExpectation}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="earliestStartDate"
+                                    required
+                                    fullWidth
+                                    type="date"
+                                    id="earliestStartDate"
+                                    label=""
+                                    value={formik.values.earliestStartDate}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.earliestStartDate && Boolean(formik.errors.earliestStartDate)}
+                                    helperText={formik.touched.earliestStartDate && formik.errors.earliestStartDate}
                                 />
                             </Grid>
                             <Grid item xs={12}>
