@@ -51,6 +51,12 @@ web_modules/
 # Optional npm cache directory
 .npm
 
+# Ignore emailServer.js file
+emailServer.js
+app.js
+sendEmail.js
+
+
 # Optional eslint cache
 .eslintcache
 
