@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 const ErrorResponse = require("../utils/errorResponse");
 
-exports.signup = async (req, res, next) => {
+/*exports.signup = async (req, res, next) => {
     const {email} = req.body;
     const userExist = await User.findOne({email});
 
@@ -17,10 +17,9 @@ exports.signup = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-}
+} */
 
 exports.signin = async (req, res, next) => {
-
     try {
         const {email, password} = req.body;
         // Validation
@@ -45,8 +44,8 @@ exports.signin = async (req, res, next) => {
         if (!isMatched) {
             return next(new ErrorResponse("Invalid credentials", 400))
         }
-
         await sendTokenResponse(user, 200, res);
+
     } catch (error) {
         next(error);
     }

@@ -9,7 +9,7 @@ import {
 
 
 export const userSignInAction = (user) => async (dispatch) => {
-    dispatch({type: USER_SIGNIN_REQUEST});
+    dispatch({ type: USER_SIGNIN_REQUEST });
     try {
         const {data} = await axios.post("http://localhost:8000/api/signin", user);
         localStorage.setItem('userInfo', JSON.stringify(data));
@@ -21,12 +21,11 @@ export const userSignInAction = (user) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_SIGNIN_FAIL,
-            payload: error.response.data.error
+            payload: error.response.data
         });
         toast.error(error.response.data.error);
     }
-}
-
+};
 
 
 

@@ -16,7 +16,6 @@ const SearchInputEl = () => {
     const navigate = useNavigate();
 
     const onSubmit = (values, actions) => {
-        //alert(values.search);
         const {search} = values;
         if (search.trim()) {
             navigate(`/search/${search}`);
@@ -40,7 +39,6 @@ const SearchInputEl = () => {
         <form onSubmit={handleSubmit} style={{width: '90%'}}>
             <Box sx={{width: '100%', display: 'flex', justifyContent: 'center'}}>
                 {/* <Search> */}
-
                 <InputBase sx={{bgcolor: 'white', padding: '10px', borderRadius: '0.25rem'}}
                            fullWidth={true}
                            id="search"
@@ -50,7 +48,6 @@ const SearchInputEl = () => {
                            value={values.search}
                            onChange={handleChange}
                            error={touched.search && Boolean(errors.search)}
-                    // helperText={touched.search && errors.search}
                 />
 
                 <Button

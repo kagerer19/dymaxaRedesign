@@ -1,40 +1,33 @@
 import React from 'react'
-import {Sidebar, Menu, MenuItem, menuClasses, useProSidebar} from 'react-pro-sidebar';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import {Box, Button, IconButton, useTheme} from '@mui/material';
+import {Sidebar, Menu, MenuItem, menuClasses} from 'react-pro-sidebar';
+import {Box} from '@mui/material';
 import WorkIcon from '@mui/icons-material/Work';
-import CategoryIcon from '@mui/icons-material/Category';
-import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
-import Person3Icon from '@mui/icons-material/Person3';
 import Avatar from '@mui/material/Avatar';
 import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {userLogoutAction} from "../../redux/actions/userActions.js";
 import {useNavigate} from 'react-router-dom';
-import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 const SidebarAdmin = () => {
-    const {userInfo} = useSelector(state => state.signIn);
-    const {palette} = useTheme();
-    const {collapsed} = useProSidebar();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+
     //log out
-    const logOut = () => {
-        dispatch(userLogoutAction());
-        window.location.reload(true);
-        setTimeout(() => {
-            navigate('/');
-        }, 500)
-    }
+    const logOut = async () => {
+        await dispatch(userLogoutAction());
+        navigate('/JobsPage');
+    };
+
 
 
     return (
         <>
-            <Sidebar backgroundColor="#142027" style={{borderRightStyle: "none"}}>
+            <Sidebar backgroundColor="#142027"
+                     style={{borderRightStyle: "none"}}
+            >
                 <Box sx={{display: "flex", justifyContent: "space-between", flexDirection: "column", height: "100%"}}>
                     <Box>
                         <Box sx={{
@@ -74,11 +67,8 @@ const SidebarAdmin = () => {
                         >
 
                             <>
-                                <MenuItem component={<Link to="../admin/dashboard"/>}
-                                          icon={<DashboardIcon/>}> Dashboard </MenuItem>
-                                <MenuItem component={<Link to="../admin/CurrentJobs"/>} icon={<WorkIcon/>}> Jobs </MenuItem>
-                                <MenuItem component={<Link to="../admin/category"/>}
-                                          icon={<CategoryIcon/>}> Category </MenuItem>
+                                <MenuItem component={<Link to="../admin/CurrentJobs"/>} icon={<WorkIcon/>}>Manage
+                                    Jobs </MenuItem>
                             </>
 
                         </Menu>
@@ -86,8 +76,6 @@ const SidebarAdmin = () => {
                     <Box sx={{pb: 2}}>
                         <Menu
                             menuItemStyles={{
-
-
                                 button: {
                                     [`&.${menuClasses.button}`]: {
                                         color: "#fafafa",
@@ -101,13 +89,14 @@ const SidebarAdmin = () => {
 
                                 icon: {
                                     [`&.${menuClasses.icon}`]: {
-                                        // color: "blue",
-                                        color: palette.primary.main,
+                                        color: '#7BF1A8',
                                     }
                                 },
                             }}
                         >
-                            <MenuItem onClick={logOut} icon={<LoginIcon sx={{color: '#7BF1A8'}}/>}> Log out </MenuItem>
+                            <MenuItem onClick={logOut} icon={<LogoutIcon/>}>
+                                Logout
+                            </MenuItem>
                         </Menu>
                     </Box>
                 </Box>

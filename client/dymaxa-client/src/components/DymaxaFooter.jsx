@@ -1,6 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
-
 const DymaxaFooter = () => {
     return (
         <footer className="flex flex-col justify-around bottom-0 w-full bg-[#132027] text-white py-6">

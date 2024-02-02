@@ -1,9 +1,9 @@
 /* Import Lato font */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 
 /* Apply Lato font to all elements */
 * {
-    font-family: 'Lato', sans-serif;
+    font-family: 'PT Sans', sans-serif;
 }
 
 body {

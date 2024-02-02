@@ -1,58 +1,63 @@
-import {Box, MenuItem, Paper, Typography} from '@mui/material'
-import React, { useEffect } from 'react'
+import {Box, Paper, Typography} from '@mui/material'
+import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux'
-import { jobType_LoadAction } from '../../redux/actions/jobTypeActions';
-import { registerAjobAction } from '../../redux/actions/jobActions';
+import { useDispatch } from 'react-redux'
+import { createAJobAction } from '../../redux/actions/jobActions';
 import Grid from "@mui/material/Grid";
-
 
 const validationSchema = yup.object({
     title: yup
         .string('Enter a job title')
-        .required('title is required'),
+        .required('Title is required'),
     description: yup
         .string('Enter a description')
         .min(6, 'Description should be of minimum 6 characters length')
         .required('Description is required'),
+    requirements: yup
+        .array()
+        .of(yup.string('Enter a requirement'))
+        .required('Requirements are required'),
+    behaviouralCompetency: yup
+        .array()
+        .of(yup.string('Enter Behavioural Competency')),
+    duties: yup
+        .array()
+        .of(yup.string('Enter a duty'))
+        .required('Duties are required'),
     salary: yup
         .number('Enter a salary')
         .required('Salary is required'),
     location: yup
-        .string('Enter a location')
-        .required('Location is required'),
-    jobType: yup
-        .string('Enter a Category')
-        .required('Category is required'),
+        .string('Enter a location'),
+    employmentType: yup
+        .string('Enter Employment type')
+        .required('Employment type is required')
 });
+
 
 
 export const CreateJob = () => {
     const dispatch = useDispatch();
-
-    //job type
-    useEffect(() => {
-        dispatch(jobType_LoadAction());
-    }, []);
-
-    const { jobType } = useSelector(state => state.jobTypeAll);
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
             title: '',
             description: '',
+            requirements: '',
+            behaviouralCompetency: '',
+            duties: '',
             salary: '',
             location: '',
-            jobType: ''
+            employmentType: ''
         },
         validationSchema: validationSchema,
         onSubmit: (values, actions) => {
-            dispatch(registerAjobAction(values))
-            // alert(JSON.stringify(values, null, 2));
-            actions.resetForm();
+            dispatch(createAJobAction(values))
+            navigate('/admin/CurrentJobs');
         },
     });
 
@@ -128,10 +133,73 @@ export const CreateJob = () => {
                             <TextField
                                 sx={{ mb: 3 }}
                                 fullWidth
+                                id="requirements"
+                                name="requirements"
+                                label="Requirements (separated by commas)"
+                                type="text"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                placeholder="Enter job requirements"
+                                value={formik.values.requirements}
+                                onChange={(e) => {
+                                    const requirementsArray = e.target.value.split(',');
+                                    formik.setFieldValue('requirements', requirementsArray);
+                                }}
+                                onBlur={formik.handleBlur}
+                                error={formik.touched.requirements && Boolean(formik.errors.requirements)}
+                                helperText={formik.touched.requirements && formik.errors.requirements}
+                            />
+
+                            <TextField
+                                sx={{ mb: 3 }}
+                                fullWidth
+                                id="behaviouralCompetency"
+                                name="behaviouralCompetency"
+                                label="Behavioural Competencies (separated by commas)"
+                                type="text"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                placeholder="Enter job Behavioural Competencies"
+                                value={formik.values.behaviouralCompetency}
+                                onChange={(e) => {
+                                    const behaviouralCompetencyArray = e.target.value.split(',');
+                                    formik.setFieldValue('behaviouralCompetency', behaviouralCompetencyArray);
+                                }}
+                                onBlur={formik.handleBlur}
+                                error={formik.touched.behaviouralCompetency && Boolean(formik.errors.behaviouralCompetency)}
+                                helperText={formik.touched.behaviouralCompetency && formik.errors.behaviouralCompetency}
+                            />
+
+                            <TextField
+                                sx={{ mb: 3 }}
+                                fullWidth
+                                id="duties"
+                                name="duties"
+                                label="Duties (separated by commas)"
+                                type="text"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                placeholder="Enter Duties"
+                                value={formik.values.duties}
+                                onChange={(e) => {
+                                    const dutiesArray = e.target.value.split(',');
+                                    formik.setFieldValue('duties', dutiesArray);
+                                }}
+                                onBlur={formik.handleBlur}
+                                error={formik.touched.duties && Boolean(formik.errors.duties)}
+                                helperText={formik.touched.duties && formik.errors.duties}
+                            />
+
+                            <TextField
+                                sx={{ mb: 3 }}
+                                fullWidth
                                 id="salary"
                                 name="salary"
                                 label="Salary"
-                                type="text"
+                                type="number"
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -160,33 +228,23 @@ export const CreateJob = () => {
                                 error={formik.touched.location && Boolean(formik.errors.location)}
                                 helperText={formik.touched.location && formik.errors.location}
                             />
-
                             <TextField
                                 sx={{ mb: 3 }}
                                 fullWidth
-                                className="px-2 my-2"
-                                variant="outlined"
-                                name="jobType"
-                                id="jobType"
-                                select
-                                label="Category"
-                                value={formik.values.jobType}
+                                id="employmentType"
+                                name="employmentType"
+                                label="Employment Type"
+                                type="text"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                placeholder="Employment Type"
+                                value={formik.values.employmentType}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                error={formik.touched.jobType && Boolean(formik.errors.jobType)}
-                                helperText={formik.touched.jobType && formik.errors.jobType}
-                            >
-                                <MenuItem key={''} value={''}>
-                                    None
-                                </MenuItem>
-                                {jobType &&
-                                    jobType.map((cat) => (
-                                        <MenuItem key={cat._id} value={cat._id}>
-                                            {cat.jobTypeName}
-                                        </MenuItem>
-                                    ))}
-                            </TextField>
-
+                                error={formik.touched.employmentType && Boolean(formik.errors.employmentType)}
+                                helperText={formik.touched.employmentType && formik.errors.employmentType}
+                            />
                             <Button fullWidth variant="contained" type="submit" sx={{backgroundColor: '#33485E','&:hover': {
                                     backgroundColor: 'rgba(51, 72, 94, 0.91)',
                                     color: '#7bf1a8',

@@ -1,5 +1,3 @@
-// emailApi.js
-
 import DOMPurify from "dompurify";
 
 export const sendFormDataToServer = async (formData, files) => {

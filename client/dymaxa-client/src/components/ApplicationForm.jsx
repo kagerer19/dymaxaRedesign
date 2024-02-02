@@ -114,7 +114,7 @@ const ApplicationForm = () => {
                 });
                 formik.setErrors(errors);
             } finally {
-                setIsLoading(false); // Set loading state back to false after submission
+                setIsLoading(false);
             }
         },
     });
@@ -214,7 +214,7 @@ const ApplicationForm = () => {
                                     name="salaryExpectation"
                                     type="number"
                                     id="salaryExpectation"
-                                    label="salaryExpectation"
+                                    label="Salary Expectation"
                                     fullWidth
                                     value={formik.values.salaryExpectation}
                                     onChange={formik.handleChange}
@@ -241,7 +241,7 @@ const ApplicationForm = () => {
                                     name="introText"
                                     type="text"
                                     id="introText"
-                                    label="Anything else we should know, availability, etc.?"
+                                    label="Cover Letter or anything else we should know?"
                                     fullWidth
                                     value={formik.values.introText}
                                     onChange={formik.handleChange}

@@ -1,8 +1,7 @@
-// Import nodemailer
 const nodemailer = require('nodemailer');
 const ErrorResponse = require("./utils/errorResponse");
 
-// Configure nodemailer transporter
+// Configure transporter
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -17,7 +16,7 @@ exports.sendEmail = async ({ formData, files }) => {
             return new ErrorResponse('Error: formData is undefined');
         }
 
-        // Email content of form data
+        // Email content
         const emailContent = `
             Name: ${formData.firstName} ${formData.lastName}
             Email: ${formData.email}
@@ -34,7 +33,6 @@ exports.sendEmail = async ({ formData, files }) => {
             content: file.buffer,
         }));
 
-        // Send email to admin
         const adminMailOptions = {
             from: 'kagerer19@gmail.com',
             to: 'kagerer19@gmail.com',

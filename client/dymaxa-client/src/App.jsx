@@ -14,6 +14,7 @@ import JobsPage from "./pages/JobsPage.jsx";
 import JobDescriptionPage from "./pages/JobDescriptionPage.jsx";
 import CreateJob from "./pages/admin/CreateJob.jsx";
 import UpdateJob from "./pages/admin/UpdateJob.jsx";
+import ComingSoon from "./pages/ComingSoon.jsx";
 
 
 
@@ -39,6 +40,7 @@ function App() {
                         <Route path='/admin/CurrentJobs' element={<AdminRoute><CurrentJobsHOC/></AdminRoute>}/>
                         <Route path='/CreateJob' element={<DashCreateJobHOC />} />
                         <Route path='/UpdateJob/:id' element={<DashUpdateJobHOC />} />
+                        <Route path='/ComingSoon' element={<ComingSoon/>}/>
                         <Route path='*' element={<NotFound/>}/>
                     </Routes>
                 </BrowserRouter>

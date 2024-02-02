@@ -25,7 +25,7 @@ const JobsPage = () => {
 
     useEffect(() => {
         dispatch(jobLoadAction(page, keyword, cat, location));
-        window.scrollTo(0, 0);
+        window.scrollTo(3, 3);
     }, [page, keyword, cat, location, id]);
     return (
         <>

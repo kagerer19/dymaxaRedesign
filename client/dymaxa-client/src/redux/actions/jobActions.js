@@ -83,7 +83,7 @@ export const createAJobAction = (job) => async (dispatch) => {
     }
 }
 
-// delete a job by ID
+// Update a job by ID
 export const updateJobAction = (id, updateValues) => async (dispatch) => {
     dispatch({ type: UPDATE_JOB_REQUEST });
 

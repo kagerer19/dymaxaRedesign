@@ -11,7 +11,7 @@ import {
     USER_SIGNIN_SUCCESS
 } from "../constants/userConstants.js";
 
-export const userReducerSignIn = (state = { state: [] }, action) => {
+export const userReducerSignIn = (state = { state: {} }, action) => {
     switch (action.type) {
         case USER_SIGNIN_REQUEST:
             return { loading: true, userInfo: null, isAuthenticated: false }

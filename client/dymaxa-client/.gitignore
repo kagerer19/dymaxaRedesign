@@ -12,12 +12,6 @@ dist
 dist-ssr
 *.local
 
-# Ignore emailServer.js file
-emailServer.js
-app.js
-sendEmail.js
-
-
 # local env files
 .env
 

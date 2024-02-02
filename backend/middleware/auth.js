@@ -4,7 +4,7 @@ const user = require("../models/userModel");
 
 // check if admin is authenticated
 exports.isAuthenticated = async (req, res, next) => {
-    const { token } = req.cookies;
+    const {token} = req.signedCookies;
     //Make sure token exists
     if (!token) {
         return next(new ErrorResponse('Not authorized to access this route', 401))
@@ -22,9 +22,8 @@ exports.isAuthenticated = async (req, res, next) => {
 
 //middleware for admin
 exports.isAdmin = async (req, res, next) => {
-    if(req.user.role === 0){
-        return next(new ErrorResponse("Access denied, you must be an admin", 401))
+    if (req.user && typeof req.user === 'object' && req.user.role !== undefined && req.user.role === 0) {
+        return next(new ErrorResponse("Access denied, you must be an admin", 401));
     }
     next();
 }
-

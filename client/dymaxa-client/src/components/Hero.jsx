@@ -1,5 +1,5 @@
 import React from "react";
-import JobPage from "../pages/JobPage.jsx";
+import JobsPage from "../pages/JobsPage.jsx";
 
 function Hero() {
     return (
@@ -11,7 +11,7 @@ function Hero() {
                     Dymaxa is an SME offering Job Recruitment and Au Pairing services, please take a look at our site to see more about us and contact us
                 </p>
                 <div className="cta-buttons">
-                    <a href="/JobPage" className="cta-button">View Jobs</a>
+                    <a href="/JobsPage" className="cta-button">View Jobs</a>
                 </div>
             </div>
         </div>

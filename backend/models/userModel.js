@@ -4,13 +4,11 @@ const jwt = require("jsonwebtoken");
 const {ObjectId} = mongoose.Schema;
 
 const jobHistorySchema = new mongoose.Schema({
-
     title: {
         type: String,
         trim: true,
         maxlength: 70,
     },
-
     description: {
         type: String,
         trim: true,
