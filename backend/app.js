@@ -40,8 +40,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(cors(
     {
-        origin: ["https://dymaxa-redesign-9mlp.vercel.app/"],
-        methods: ["POST", "GET"],
+        origin: ["https://dymaxa-redesign-9mlp.vercel.app"],
+        methods: ["*"],
         credentials: true
     }
 ));
