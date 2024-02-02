@@ -38,7 +38,13 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(
+    {
+        origin: ["https://dymaxa-redesign-ejmtf1j1b-kagerer19s-projects.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 
 app.use('/api', jobRoute);
 app.use('/api', authRoutes);
