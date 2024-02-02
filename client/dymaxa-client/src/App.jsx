@@ -31,7 +31,7 @@ function App() {
         <>
             <ToastContainer toastStyle={{background: '#F8F7F1'}}/>
             <ProSidebarProvider>
-                <BrowserRouter>
+                <BrowserRouter basename={'src/'}>
                     <Routes>
                         <Route path='/' element={<Home/>}/>
                         <Route path='/JobsPage' element={<JobsPage/>}/>
