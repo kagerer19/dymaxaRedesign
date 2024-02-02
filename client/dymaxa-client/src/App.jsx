@@ -15,6 +15,7 @@ import JobDescriptionPage from "./pages/JobDescriptionPage.jsx";
 import CreateJob from "./pages/admin/CreateJob.jsx";
 import UpdateJob from "./pages/admin/UpdateJob.jsx";
 import ComingSoon from "./pages/ComingSoon.jsx";
+import axios from "axios";
 
 
 
@@ -24,6 +25,8 @@ const CurrentJobsHOC = Layout(CurrentJobs)
 const DashCreateJobHOC = Layout(CreateJob)
 const DashUpdateJobHOC = Layout(UpdateJob)
 function App() {
+    axios.defaults.withCredentials = true;
+    axios.post('https:// dymaxa-redesign-git-main-kagerer19s-projects.vercel.app/')
     return (
         <>
             <ToastContainer toastStyle={{background: '#F8F7F1'}}/>
