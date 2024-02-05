@@ -7,12 +7,12 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
 // import routes
-const authRoutes = require('../routes/authRoutes');
-const userRoutes = require('../routes/userRoutes');
-const jobRoute = require('../routes/jobsRoutes');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const jobRoute = require('./routes/jobsRoutes');
 
 const cookieParser = require("cookie-parser");
-const errorHandler = require("../middleware/error");
+const errorHandler = require("./middleware/error");
 
 //database connection
 const dbConnectionString = process.env.DB_CONNECTION_STRING;
