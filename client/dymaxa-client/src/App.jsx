@@ -15,6 +15,7 @@ import JobDescriptionPage from "./pages/JobDescriptionPage.jsx";
 import CreateJob from "./pages/admin/CreateJob.jsx";
 import UpdateJob from "./pages/admin/UpdateJob.jsx";
 import ComingSoon from "./pages/ComingSoon.jsx";
+import axios from "axios";
 
 
 //HOC- higher order Components
@@ -23,6 +24,7 @@ const CurrentJobsHOC = Layout(CurrentJobs)
 const DashCreateJobHOC = Layout(CreateJob)
 const DashUpdateJobHOC = Layout(UpdateJob)
 
+axios.post('')
 function App() {
     return (
         <>
