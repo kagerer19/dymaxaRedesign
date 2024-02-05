@@ -52,24 +52,9 @@ app.get("/", (req, res) => {
     res.json("Hello, Its the backend!")
 })
 
-app.use('/api', cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true
-}), jobRoute);
-
-app.use('/api', cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true
-}), authRoutes);
-
-app.use('/api', cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true
-}), userRoutes);
-
+app.use('/api', jobRoute);
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
 
 // error middleware
 app.use(errorHandler);
