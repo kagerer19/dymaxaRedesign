@@ -19,6 +19,13 @@ const dbConnectionString = process.env.DB_CONNECTION_STRING;
 
 mongoose.set("strictQuery", true, "useNewUrlParser", true);
 
+app.use(cors(
+    {
+        origin: ["https://dymaxa-redesign.vercel.app/"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 const connectDB = async () => {
     try {
         await mongoose.connect(dbConnectionString);
@@ -38,13 +45,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(cookieParser());
-app.use(cors(
-    {
-        origin: ["https://dymaxa-redesign.vercel.app/"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
-));
 
 app.use(express.json());
 
