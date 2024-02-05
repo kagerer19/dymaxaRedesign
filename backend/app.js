@@ -21,7 +21,7 @@ mongoose.set("strictQuery", true, "useNewUrlParser", true);
 
 app.use(cors(
     {
-        origin: ["https://dymaxa-redesign-h6kr.vercel.app"],
+        origin: ["https://dymaxa-redesign-frontend.vercel.app"],
         methods: ["POST", "GET"],
         credentials: true
     }
