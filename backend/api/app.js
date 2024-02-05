@@ -46,6 +46,9 @@ app.use(cors(
     }
 ));
 
+app.get("/", (req, res) => {
+    res.json("Hello, Its the backend!")
+})
 
 app.use('/api', jobRoute);
 app.use('/api', authRoutes);
