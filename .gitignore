@@ -52,9 +52,8 @@ web_modules/
 .npm
 
 # Ignore emailServer.js file
-emailServer.js
-app.js
-sendEmail.js
+
+
 
 
 # Optional eslint cache
