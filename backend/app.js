@@ -18,14 +18,6 @@ const errorHandler = require("./middleware/error");
 const dbConnectionString = process.env.DB_CONNECTION_STRING;
 
 mongoose.set("strictQuery", true, "useNewUrlParser", true);
-
-app.use(cors(
-    {
-        origin: ["https://dymaxa-redesign-frontend.vercel.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
-));
 const connectDB = async () => {
     try {
         await mongoose.connect(dbConnectionString);
@@ -35,22 +27,26 @@ const connectDB = async () => {
         process.exit(1);
     }
 };
-
 //MIDDLEWARE
+
 app.use(morgan('combined'));
 app.use(bodyParser.json({ limit: "15mb" }));
 app.use(bodyParser.urlencoded({
     limit: "15mb",
     extended: true
 }));
-
 app.use(cookieParser());
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.json("Hello, Its the backend!")
-})
+
+app.use(cors(
+    {
+        origin: ["https://dymaxa-redesign-frontend.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 
 app.use('/api', cors({
     origin: ["https://dymaxa-redesign-frontend.vercel.app"],
