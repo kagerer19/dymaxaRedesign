@@ -37,7 +37,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.get('/', (req, res) =>  req.status(200).json({message: 'Hi Alexander'}))
 app.use(cookieParser());
 app.use(cors());
 
@@ -56,4 +55,4 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
 
-connectDB().then();
+connectDB()
