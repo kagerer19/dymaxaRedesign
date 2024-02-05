@@ -21,7 +21,7 @@ const DymaxaHeader = () => {
         <header
             className="px-4 md:px-6 h-16 md:h-20 flex justify-around items-center bg-[#F8F7F1]3 border-b-2 border-[#7bf1a8]">
             <div className="flex items-center mb-2 md:mb-0 align-middle">
-                <img className={"header-logo md:mt-0 mt-3"} src={"./src/assets/Dymaxa-logo.png"}
+                <img className={"header-logo md:mt-0 mt-3"} src={"src/assets/Dymaxa-logo.png"}
                      alt={"Four leaf clover"}/>
                 <a className="hidden md:flex items-center gap-3 text-lg font-semibold sm:text-base mr-4 mb-1 hover:text-gray-300"
                    href="/">
