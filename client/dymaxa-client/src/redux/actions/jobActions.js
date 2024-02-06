@@ -13,10 +13,9 @@ import {
 import axios from "axios";
 import {toast} from "react-toastify";
 
-
 //Load jobs
 export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '') => async (dispatch) => {
-    dispatch({ type: JOB_LOAD_REQUEST });
+    dispatch({type: JOB_LOAD_REQUEST});
 
     try {
         //!TODO {Add dynamic URL for production launch}
@@ -46,9 +45,9 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
 
 //Load single job
 export const loadSingleJobAction = (id) => async (dispatch) => {
-    dispatch({ type: SINGLE_JOB_LOAD_REQUEST });
+    dispatch({type: SINGLE_JOB_LOAD_REQUEST});
     try {
-        const { data } = await axios.get(`/api/job/${id}`);
+        const {data} = await axios.get(`/api/job/${id}`);
         dispatch({
             type: SINGLE_JOB_LOAD_SUCCESS,
             payload: data
@@ -64,10 +63,10 @@ export const loadSingleJobAction = (id) => async (dispatch) => {
 
 //Create a job
 export const createAJobAction = (job) => async (dispatch) => {
-    dispatch({ type: REGISTER_JOB_REQUEST })
+    dispatch({type: REGISTER_JOB_REQUEST})
 
     try {
-        const { data } = await axios.post("/api/job/create", job)
+        const {data} = await axios.post("/api/job/create", job)
         dispatch({
             type: REGISTER_JOB_SUCCESS,
             payload: data
@@ -84,9 +83,9 @@ export const createAJobAction = (job) => async (dispatch) => {
 
 // Update a job by ID
 export const updateJobAction = (id, updateValues) => async (dispatch) => {
-    dispatch({ type: UPDATE_JOB_REQUEST });
+    dispatch({type: UPDATE_JOB_REQUEST});
     try {
-        const { data } = await axios.put(`/api/job/update/${id}`, updateValues);
+        const {data} = await axios.put(`/api/job/update/${id}`, updateValues);
         console.log('Update Payload:', updateValues);
         dispatch({
             type: UPDATE_JOB_SUCCESS,
@@ -104,9 +103,9 @@ export const updateJobAction = (id, updateValues) => async (dispatch) => {
 
 // delete a job by ID
 export const deleteSingleJobAction = (job_id) => async (dispatch) => {
-    dispatch({ type: DELETE_JOB_REQUEST });
+    dispatch({type: DELETE_JOB_REQUEST});
     try {
-        const { data } = await axios.delete(`/api/job/delete/${job_id}`);
+        const {data} = await axios.delete(`/api/job/delete/${job_id}`);
         dispatch({
             type: DELETE_JOB_SUCCESS,
             payload: data
