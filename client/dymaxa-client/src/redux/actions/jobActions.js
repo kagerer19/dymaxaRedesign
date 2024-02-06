@@ -23,6 +23,7 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
 
     try {
         const url = `${BASE_URL}/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
+        console.log('Request URL:', url); // Log the request URL
         const response = await fetch(url);
 
         if (response.ok) {
@@ -57,6 +58,7 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
         });
     }
 };
+
 
 //Load single job
 export const loadSingleJobAction = (id) => async (dispatch) => {
