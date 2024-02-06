@@ -21,7 +21,7 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
     dispatch({ type: JOB_LOAD_REQUEST });
 
     try {
-        const url = `${BASE_URL}/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
+        const url = `/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
         const response = await fetch(url);
 
         if (response.ok) {
