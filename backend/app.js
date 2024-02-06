@@ -40,11 +40,12 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
+console.log("CORS_ALLOWED_ORIGINS:", process.env.CORS_ALLOWED_ORIGINS);
 
 // Apply CORS middleware globally
 app.use(
     cors({
-        origin: process.env.CORS_ALLOWED_ORIGINS || "https://dymaxa-redesign-frontend.vercel.app/", // Allow requests from specified origins
+        origin: process.env.CORS_ALLOWED_ORIGINS || "https://dymaxa-redesign-frontend.vercel.app", // Allow requests from specified origins
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })
