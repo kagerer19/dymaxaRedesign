@@ -39,26 +39,30 @@ app.use(cookieParser());
 
 app.use(express.json());
 
-app.options('*', cors());
+
 app.use(cors(
     {
         origin: ["https://dymaxa-redesign-frontend.vercel.app"],
+        methods: ["POST", "GET"],
         credentials: true
     }
 ));
 
 app.use('/api', cors({
     origin: ["https://dymaxa-redesign-frontend.vercel.app"],
+    methods: ["POST", "GET"],
     credentials: true
 }), jobRoute);
 
 app.use('/api', cors({
     origin: ["https://dymaxa-redesign-frontend.vercel.app"],
+    methods: ["POST", "GET"],
     credentials: true
 }), authRoutes);
 
 app.use('/api', cors({
     origin: ["https://dymaxa-redesign-frontend.vercel.app"],
+    methods: ["POST", "GET"],
     credentials: true
 }), userRoutes);
 
