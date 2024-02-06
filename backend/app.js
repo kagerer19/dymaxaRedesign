@@ -40,6 +40,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
+
 // Apply CORS middleware globally
 app.use(
     cors({
