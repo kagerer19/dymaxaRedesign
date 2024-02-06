@@ -41,37 +41,15 @@ app.use(express.json());
 
 // Apply CORS middleware globally
 app.use(cors({
-    origin: process.env.CORS_ALLOWED_ORIGINS,
+    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 
-app.use(cors(
-    {
-        origin: ["https://dymaxa-redesign-frontend.vercel.app"],
-        methods: ["POST", "GET", "FETCH"],
-        credentials: true
-    }
-));
-
-app.use('/api', cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
-    methods: ["POST", "GET", "FETCH"],
-    credentials: true
-}), jobRoute);
-
-app.use('/api', cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
-    methods: ["POST", "GET", "FETCH"],
-    credentials: true
-}), authRoutes);
-
-app.use('/api', cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
-    methods: ["POST", "GET", "FETCH"],
-    credentials: true
-}), userRoutes);
-
+// Apply routes
+app.use('/api', jobRoute);
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
 
 // error middleware
 app.use(errorHandler);
