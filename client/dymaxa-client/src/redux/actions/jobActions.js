@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 const BASE_URL =  "https://dymaxa-redesign.vercel.app";
 
 //Load jobs
+//Load jobs
 export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '') => async (dispatch) => {
     dispatch({ type: JOB_LOAD_REQUEST });
 
@@ -25,26 +26,37 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
         const response = await fetch(url);
 
         if (response.ok) {
-            const data = await response.json();
-            dispatch({
-                type: JOB_LOAD_SUCCESS,
-                payload: data,
-            });
+            const data = await response.text();
+            console.log('Response:', data); // Log the response
+            try {
+                const jsonData = JSON.parse(data); // Attempt to parse as JSON
+                dispatch({
+                    type: JOB_LOAD_SUCCESS,
+                    payload: jsonData,
+                });
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                dispatch({
+                    type: JOB_LOAD_FAIL,
+                    payload: 'Error parsing JSON response',
+                });
+            }
         } else {
-            const errorData = await response.json();
+            const errorData = await response.text();
+            console.error('Error response:', errorData);
             dispatch({
                 type: JOB_LOAD_FAIL,
                 payload: errorData,
             });
         }
     } catch (error) {
+        console.error('Fetch error:', error);
         dispatch({
             type: JOB_LOAD_FAIL,
             payload: error.message,
         });
     }
 };
-
 
 //Load single job
 export const loadSingleJobAction = (id) => async (dispatch) => {
