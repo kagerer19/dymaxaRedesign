@@ -42,19 +42,14 @@ app.use(express.json());
 
 console.log("CORS_ALLOWED_ORIGINS:", process.env.CORS_ALLOWED_ORIGINS);
 
-// Allow requests from specified origins
-const allowedOrigins = ['https://dymaxa-redesign-frontend.vercel.app'];
-app.use(cors({
-    origin: function(origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true // Enable credentials (e.g., cookies)
-}));
+// Apply CORS middleware globally
+app.use(
+    cors({
+        origin: process.env.CORS_ALLOWED_ORIGINS || "https://dymaxa-redesign-frontend.vercel.app", // Allow requests from specified origins
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true,
+    })
+);
 
 // Routes
 app.use("/api", jobRoute);
