@@ -12,7 +12,7 @@
       "dest": "/api/$1",
       "methods": ["GET", "POST", "PUT", "DELETE"],
       "headers": {
-        "Access-Control-Allow-Origin": "https://dymaxa-redesign-frontend.vercel.app",
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE",
         "Access-Control-Allow-Headers": "Content-Type,Authorization"
       }
