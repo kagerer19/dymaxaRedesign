@@ -21,7 +21,7 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
     dispatch({ type: JOB_LOAD_REQUEST });
 
     try {
-        const url = `${BASE_URL}/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
+        const url = `${BASE_URL}/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
         const response = await axios.get(url);
 
         if (response.status === 200) {
@@ -48,7 +48,7 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
 export const loadSingleJobAction = (id) => async (dispatch) => {
     dispatch({ type: SINGLE_JOB_LOAD_REQUEST });
     try {
-        const { data } = await axios.get(`${BASE_URL}/job/${id}`);
+        const { data } = await axios.get(`${BASE_URL}/api/job/${id}`);
         dispatch({
             type: SINGLE_JOB_LOAD_SUCCESS,
             payload: data
@@ -66,7 +66,7 @@ export const createAJobAction = (job) => async (dispatch) => {
     dispatch({ type: REGISTER_JOB_REQUEST })
 
     try {
-        const { data } = await axios.post(`${BASE_URL}/job/create`, job)
+        const { data } = await axios.post(`${BASE_URL}/api/job/create`, job)
         dispatch({
             type: REGISTER_JOB_SUCCESS,
             payload: data
@@ -85,7 +85,7 @@ export const createAJobAction = (job) => async (dispatch) => {
 export const updateJobAction = (id, updateValues) => async (dispatch) => {
     dispatch({ type: UPDATE_JOB_REQUEST });
     try {
-        const { data } = await axios.put(`${BASE_URL}/job/update/${id}`, updateValues);
+        const { data } = await axios.put(`${BASE_URL}/api/job/update/${id}`, updateValues);
         console.log('Update Payload:', updateValues);
         dispatch({
             type: UPDATE_JOB_SUCCESS,
@@ -105,7 +105,7 @@ export const updateJobAction = (id, updateValues) => async (dispatch) => {
 export const deleteSingleJobAction = (job_id) => async (dispatch) => {
     dispatch({ type: DELETE_JOB_REQUEST });
     try {
-        const { data } = await axios.delete(`${BASE_URL}/job/delete/${job_id}`);
+        const { data } = await axios.delete(`${BASE_URL}/api/job/delete/${job_id}`);
         dispatch({
             type: DELETE_JOB_SUCCESS,
             payload: data
