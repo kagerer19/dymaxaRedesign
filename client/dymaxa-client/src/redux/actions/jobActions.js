@@ -85,7 +85,6 @@ export const createAJobAction = (job) => async (dispatch) => {
 // Update a job by ID
 export const updateJobAction = (id, updateValues) => async (dispatch) => {
     dispatch({ type: UPDATE_JOB_REQUEST });
-
     try {
         const { data } = await axios.put(`/api/job/update/${id}`, updateValues);
         console.log('Update Payload:', updateValues);
