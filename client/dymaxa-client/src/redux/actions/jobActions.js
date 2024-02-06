@@ -73,7 +73,6 @@ export const createAJobAction = (job) => async (dispatch) => {
             payload: data
         })
         toast.success("Job created successfully");
-
     } catch (error) {
         dispatch({
             type: REGISTER_JOB_FAIL,
