@@ -41,7 +41,7 @@ app.use(express.json());
 
 // Apply CORS middleware globally
 app.use(cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
+    origin: process.env.CORS_ALLOWED_ORIGINS,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
