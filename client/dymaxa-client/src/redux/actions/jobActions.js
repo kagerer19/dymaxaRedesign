@@ -11,15 +11,17 @@ import {
     DELETE_JOB_REQUEST, DELETE_JOB_SUCCESS, DELETE_JOB_FAIL, UPDATE_JOB_REQUEST, UPDATE_JOB_SUCCESS, UPDATE_JOB_FAIL
 } from "../constants/jobConstants.js";
 import axios from "axios";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
+
+// Define your API base URL
+const BASE_URL = process.env.REACT_APP_API_BASE_URL || "https://dymaxa-redesign.vercel.app/api";
 
 //Load jobs
 export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '') => async (dispatch) => {
-    dispatch({type: JOB_LOAD_REQUEST});
+    dispatch({ type: JOB_LOAD_REQUEST });
 
     try {
-        //!TODO {Add dynamic URL for production launch}
-        const url = `/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
+        const url = `${BASE_URL}/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
         const response = await fetch(url);
 
         if (response.ok) {
@@ -45,9 +47,9 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
 
 //Load single job
 export const loadSingleJobAction = (id) => async (dispatch) => {
-    dispatch({type: SINGLE_JOB_LOAD_REQUEST});
+    dispatch({ type: SINGLE_JOB_LOAD_REQUEST });
     try {
-        const {data} = await axios.get(`/api/job/${id}`);
+        const { data } = await axios.get(`${BASE_URL}/job/${id}`);
         dispatch({
             type: SINGLE_JOB_LOAD_SUCCESS,
             payload: data
@@ -60,13 +62,12 @@ export const loadSingleJobAction = (id) => async (dispatch) => {
     }
 }
 
-
 //Create a job
 export const createAJobAction = (job) => async (dispatch) => {
-    dispatch({type: REGISTER_JOB_REQUEST})
+    dispatch({ type: REGISTER_JOB_REQUEST })
 
     try {
-        const {data} = await axios.post("/api/job/create", job)
+        const { data } = await axios.post(`${BASE_URL}/job/create`, job)
         dispatch({
             type: REGISTER_JOB_SUCCESS,
             payload: data
@@ -83,9 +84,9 @@ export const createAJobAction = (job) => async (dispatch) => {
 
 // Update a job by ID
 export const updateJobAction = (id, updateValues) => async (dispatch) => {
-    dispatch({type: UPDATE_JOB_REQUEST});
+    dispatch({ type: UPDATE_JOB_REQUEST });
     try {
-        const {data} = await axios.put(`/api/job/update/${id}`, updateValues);
+        const { data } = await axios.put(`${BASE_URL}/job/update/${id}`, updateValues);
         console.log('Update Payload:', updateValues);
         dispatch({
             type: UPDATE_JOB_SUCCESS,
@@ -103,9 +104,9 @@ export const updateJobAction = (id, updateValues) => async (dispatch) => {
 
 // delete a job by ID
 export const deleteSingleJobAction = (job_id) => async (dispatch) => {
-    dispatch({type: DELETE_JOB_REQUEST});
+    dispatch({ type: DELETE_JOB_REQUEST });
     try {
-        const {data} = await axios.delete(`/api/job/delete/${job_id}`);
+        const { data } = await axios.delete(`${BASE_URL}/job/delete/${job_id}`);
         dispatch({
             type: DELETE_JOB_SUCCESS,
             payload: data
