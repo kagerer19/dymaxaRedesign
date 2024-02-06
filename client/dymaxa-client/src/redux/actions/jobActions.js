@@ -19,7 +19,7 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
 
     try {
         //!TODO {Add dynamic URL for production launch}
-        const url = `https://dymaxa-redesign.vercel.app/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
+        const url = `/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
         const response = await fetch(url);
 
         if (response.ok) {
