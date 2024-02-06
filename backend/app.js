@@ -39,7 +39,7 @@ app.use(cookieParser());
 
 app.use(express.json());
 
-
+app.options('*', cors());
 app.use(cors(
     {
         origin: ["https://dymaxa-redesign-frontend.vercel.app"],
