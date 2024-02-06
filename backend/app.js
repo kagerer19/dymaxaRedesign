@@ -54,5 +54,8 @@ app.use('/api', userRoutes);
 // error middleware
 app.use(errorHandler);
 
+app.get('/api/test', (req, res) => {
+    res.json({ message: 'Backend is working fine!' });
+});
 
 connectDB();
