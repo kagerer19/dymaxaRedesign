@@ -24,8 +24,8 @@ const CurrentJobsHOC = Layout(CurrentJobs)
 const DashCreateJobHOC = Layout(CreateJob)
 const DashUpdateJobHOC = Layout(UpdateJob)
 
-axios.post('https://dymaxa-redesign.vercel.app/')
 function App() {
+    axios.post('https://dymaxa-redesign.vercel.app/')
     return (
         <>
             <ToastContainer toastStyle={{background: '#F8F7F1'}}/>
