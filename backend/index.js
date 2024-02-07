@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(cors({
-    origin: 'https://dymaxa-redesign-frontend.vercel.app',
+    origin: 'https://dymaxa-redesign-frontend.vercel.app/',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
