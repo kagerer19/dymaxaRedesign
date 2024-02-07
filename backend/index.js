@@ -21,7 +21,7 @@ app.use("/", (req, res) => {
 
 // Apply CORS middleware globally
 app.use(cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
+    origin: ["https://dymaxa-redesign-frontend.vercel.app/"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
