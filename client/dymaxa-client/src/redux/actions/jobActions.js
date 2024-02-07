@@ -14,7 +14,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 // Define your API base URL
-const BASE_URL =  "https://dymaxa-redesign.vercel.app/";
+const BASE_URL =  "https://dymaxa-redesign.vercel.app";
 
 //Load jobs
 //Load jobs
@@ -22,7 +22,7 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
     dispatch({ type: JOB_LOAD_REQUEST });
 
     try {
-        const url = `${BASE_URL}api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
+        const url = `${BASE_URL}/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
         console.log('Request URL:', url); // Log the request URL
         const response = await fetch(url);
 
