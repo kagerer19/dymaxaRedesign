@@ -14,6 +14,19 @@ const jobRoute = require('./routes/jobsRoutes');
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
+
+// Apply CORS middleware globally
+app.use(cors({
+    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
+// Apply routes
+app.use('/api', jobRoute);
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
+
 //database connection
 const dbConnectionString = process.env.DB_CONNECTION_STRING;
 
@@ -36,26 +49,15 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
-
 app.use(express.json());
 
-// Apply CORS middleware globally
-app.use(cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}));
-
-// Apply routes
-app.use('/api', jobRoute);
-app.use('/api', authRoutes);
-app.use('/api', userRoutes);
 
 // error middleware
 app.use(errorHandler);
 
-app.get('/api/test', (req, res) => {
-    res.json({ message: 'Backend is working fine!' });
+app.use("/", (req, res) => {
+    res.send({ message: 'Backend is working fine!' });
 });
 
+app.listen(4000, console.log("Server on port 4000"));
 connectDB();
