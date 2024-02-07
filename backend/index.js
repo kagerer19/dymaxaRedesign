@@ -21,7 +21,7 @@ index.use("/", (req, res) => {
 
 // Apply CORS middleware globally
 index.use(cors({
-    origin: [""],
+    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
