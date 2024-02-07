@@ -6,8 +6,6 @@ const {createJob, singleJob, updateJob, showJobs, deleteJob} = require("../contr
 const cors = require("cors");
 
 //Jobs routes
-// /api/job/create
-
 app.use(cors({
     origin: 'https://dymaxa-redesign-frontend.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -15,6 +13,7 @@ app.use(cors({
 }));
 
 
+// /api/job/create
 router.post('/job/create', createJob);
 
 // /api/job/id
