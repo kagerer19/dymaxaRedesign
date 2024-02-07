@@ -14,22 +14,12 @@ const jobRoute = require('./routes/jobsRoutes');
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
-app.use("/", (req, res) => {
-    res.send({ message: 'Backend is working fine!' });
-});
-
-
 // Apply CORS middleware globally
 app.use(cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app/"],
+    origin: "https://dymaxa-redesign-frontend.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
-
-// Apply routes
-app.use('/api', jobRoute);
-app.use('/api', authRoutes);
-app.use('/api', userRoutes);
 
 //database connection
 const dbConnectionString = process.env.DB_CONNECTION_STRING;
@@ -44,8 +34,8 @@ const connectDB = async () => {
         process.exit(1);
     }
 };
-//MIDDLEWARE
 
+// Middleware
 app.use(morgan('combined'));
 app.use(bodyParser.json({ limit: "15mb" }));
 app.use(bodyParser.urlencoded({
@@ -55,9 +45,17 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.json());
 
+// Apply routes
+app.use('/api', jobRoute);
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
 
-// error middleware
+// Test route to check if backend is working
+app.get("/", (req, res) => {
+    res.send({ message: 'Backend is working fine!' });
+});
+
+// Error middleware
 app.use(errorHandler);
-
 
 connectDB();
