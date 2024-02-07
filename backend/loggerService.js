@@ -2,7 +2,7 @@ require("dotenv").config();
 const winston = require('winston');
 require('winston-mongodb');
 const mongoose = require('mongoose');
-const Log = require('../models/loggerModel');
+const Log = require('./models/loggerModel');
 
 const dbConnectionString = process.env.DB_LOGGER_STRING;
 

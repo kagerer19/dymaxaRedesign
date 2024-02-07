@@ -1,6 +1,6 @@
 // Import nodemailer
 const nodemailer = require('nodemailer');
-const ErrorResponse = require("../utils/errorResponse");
+const ErrorResponse = require("./utils/errorResponse");
 
 // Configure nodemailer transporter
 const transporter = nodemailer.createTransport({

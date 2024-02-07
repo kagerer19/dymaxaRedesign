@@ -1,5 +1,5 @@
 const express = require('express');
-const { sendEmail } = require('sendEmail');
+const { sendEmail } = require('backend/sendEmail');
 const cors = require('cors');
 const multer = require('multer');
 const logger = require("./loggerService");

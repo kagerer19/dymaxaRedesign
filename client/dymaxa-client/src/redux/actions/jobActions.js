@@ -19,21 +19,19 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
     dispatch({ type: JOB_LOAD_REQUEST });
 
     try {
-        //!TODO {Add dynamic URL for production launch}
         const url = `https://dymaxa-redesign.vercel.app/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`;
-        const response = await fetch(url);
+        const response = await axios.get(url);
 
-        if (response.ok) {
-            const data = await response.json();
+        if (response.status === 200) {
+            const data = response.data;
             dispatch({
                 type: JOB_LOAD_SUCCESS,
                 payload: data,
             });
         } else {
-            const errorData = await response.json();
             dispatch({
                 type: JOB_LOAD_FAIL,
-                payload: errorData,
+                payload: 'Failed to load jobs',
             });
         }
     } catch (error) {
