@@ -14,6 +14,11 @@ const jobRoute = require('./routes/jobsRoutes');
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
+index.use("/", (req, res) => {
+    res.send({ message: 'Backend is working fine!' });
+});
+
+index.listen(4000, console.log("Server on port 4000"));
 
 // Apply CORS middleware globally
 index.use(cors({
@@ -55,9 +60,5 @@ index.use(express.json());
 // error middleware
 index.use(errorHandler);
 
-index.use("/", (req, res) => {
-    res.send({ message: 'Backend is working fine!' });
-});
 
-index.listen(4000, console.log("Server on port 4000"));
 connectDB();
