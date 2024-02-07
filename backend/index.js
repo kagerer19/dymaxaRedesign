@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
+const index = express();
 const cors = require('cors');
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -16,16 +16,16 @@ const errorHandler = require("./middleware/error");
 
 
 // Apply CORS middleware globally
-app.use(cors({
+index.use(cors({
     origin: ["https://dymaxa-redesign-frontend.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 
 // Apply routes
-app.use('/api', jobRoute);
-app.use('/api', authRoutes);
-app.use('/api', userRoutes);
+index.use('/api', jobRoute);
+index.use('/api', authRoutes);
+index.use('/api', userRoutes);
 
 //database connection
 const dbConnectionString = process.env.DB_CONNECTION_STRING;
@@ -42,22 +42,22 @@ const connectDB = async () => {
 };
 //MIDDLEWARE
 
-app.use(morgan('combined'));
-app.use(bodyParser.json({ limit: "15mb" }));
-app.use(bodyParser.urlencoded({
+index.use(morgan('combined'));
+index.use(bodyParser.json({ limit: "15mb" }));
+index.use(bodyParser.urlencoded({
     limit: "15mb",
     extended: true
 }));
-app.use(cookieParser());
-app.use(express.json());
+index.use(cookieParser());
+index.use(express.json());
 
 
 // error middleware
-app.use(errorHandler);
+index.use(errorHandler);
 
-app.use("/", (req, res) => {
+index.use("/", (req, res) => {
     res.send({ message: 'Backend is working fine!' });
 });
 
-app.listen(4000, console.log("Server on port 4000"));
+index.listen(4000, console.log("Server on port 4000"));
 connectDB();
