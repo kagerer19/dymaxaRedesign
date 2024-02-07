@@ -37,7 +37,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: 'https://dymaxa-redesign-frontend.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 
 // Apply routes
 app.use('/api', jobRoute);
