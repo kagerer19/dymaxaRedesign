@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const index = express();
+const app = express();
 const cors = require('cors');
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -14,22 +14,22 @@ const jobRoute = require('./routes/jobsRoutes');
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
-index.use("/", (req, res) => {
+app.use("/", (req, res) => {
     res.send({ message: 'Backend is working fine!' });
 });
 
 
 // Apply CORS middleware globally
-index.use(cors({
+app.use(cors({
     origin: ["https://dymaxa-redesign-frontend.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 
 // Apply routes
-index.use('/api', jobRoute);
-index.use('/api', authRoutes);
-index.use('/api', userRoutes);
+app.use('/api', jobRoute);
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
 
 //database connection
 const dbConnectionString = process.env.DB_CONNECTION_STRING;
@@ -46,18 +46,18 @@ const connectDB = async () => {
 };
 //MIDDLEWARE
 
-index.use(morgan('combined'));
-index.use(bodyParser.json({ limit: "15mb" }));
-index.use(bodyParser.urlencoded({
+app.use(morgan('combined'));
+app.use(bodyParser.json({ limit: "15mb" }));
+app.use(bodyParser.urlencoded({
     limit: "15mb",
     extended: true
 }));
-index.use(cookieParser());
-index.use(express.json());
+app.use(cookieParser());
+app.use(express.json());
 
 
 // error middleware
-index.use(errorHandler);
+app.use(errorHandler);
 
 
 connectDB();
