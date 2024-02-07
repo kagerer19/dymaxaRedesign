@@ -18,11 +18,10 @@ index.use("/", (req, res) => {
     res.send({ message: 'Backend is working fine!' });
 });
 
-index.listen(4000, console.log("Server on port 4000"));
 
 // Apply CORS middleware globally
 index.use(cors({
-    origin: ["https://dymaxa-redesign-frontend.vercel.app"],
+    origin: [""],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
