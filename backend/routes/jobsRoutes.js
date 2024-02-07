@@ -1,24 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const { isAdmin, isAuthenticated } = require("../middleware/auth");
-const { createJob, singleJob, updateJob, showJobs, deleteJob } = require("../controllers/jobsController");
+const {isAdmin, isAuthenticated} = require("../middleware/auth");
+const {createJob, singleJob, updateJob, showJobs, deleteJob} = require("../controllers/jobsController");
 
-// Jobs routes
+//Jobs routes
+// /api/job/create
 router.post('/job/create', createJob);
+
+// /api/job/id
 router.get('/job/:id', singleJob);
+
+// /api/job/update/:job_id
 router.put('/job/update/:job_id', updateJob);
+
+// /api/job/update/:job_id
 router.delete('/job/delete/:job_id', deleteJob);
 
-// Custom route for showing jobs
-router.get('/jobs/show', async (req, res) => {
-    try {
-        const { pageNumber, keyword, cat, location } = req.query;
-        const jobs = []; // Fetch jobs from database
-        res.status(200).json({ success: true, jobs });
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ success: false, error: 'Internal Server Error' });
-    }
-});
+// /api/jobs/show
+router.get('/jobs/show', showJobs);
 
 module.exports = router;

@@ -14,15 +14,9 @@ const jobRoute = require('./routes/jobsRoutes');
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
-// Apply CORS middleware globally
-app.use(cors({
-    origin: "https://dymaxa-redesign-frontend.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}));
 
 //database connection
-const dbConnectionString = process.env.DB_CONNECTION_STRING;
+const dbConnectionString = "mongodb+srv://dymaxaDB:nprraRQoZnVKde9j@dymaxarec.rvvspyb.mongodb.net/test?retryWrites=true&w=majority";
 
 mongoose.set("strictQuery", true, "useNewUrlParser", true);
 const connectDB = async () => {
@@ -43,21 +37,19 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
-app.use(express.json());
+app.use(cors());
 
 // Apply routes
 app.use('/api', jobRoute);
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 
-// Test route to check if backend is working
-app.get("/", (req, res) => {
-    res.send({ message: 'Hi from the backend!' });
-});
 
 // Error middleware
 app.use(errorHandler);
 
-connectDB();
+const port = process.env.PORT || 8082;
+app.listen(port, () => console.log(`Server running on port ${port}`));
 
-module.exports = app;
+connectDB().then();
+
