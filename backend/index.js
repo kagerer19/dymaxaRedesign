@@ -52,7 +52,7 @@ app.use('/api', userRoutes);
 
 // Test route to check if backend is working
 app.get("/", (req, res) => {
-    res.send({ message: 'Backend is working fine!' });
+    res.send({ message: 'Hi from the backend!' });
 });
 
 // Error middleware

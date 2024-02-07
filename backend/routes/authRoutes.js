@@ -4,16 +4,16 @@ const {isAuthenticated, isAdmin} = require("../middleware/auth");
 const {signin, logout, userProfile} = require("../controllers/authController");
 
 //Auth Routes
-// /api/signup
+// /apis/signup
 //router.post('/signup', signup);
 
-// /api/signin
+// /apis/signin
 router.post('/signin', isAdmin, signin);
 
-// /api/logout
+// /apis/logout
 router.get('/logout', logout);
 
-// /api/me
+// /apis/me
 router.get('/me', isAuthenticated, userProfile);
 
 module.exports = router;

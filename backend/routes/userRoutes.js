@@ -4,19 +4,19 @@ const {isAuthenticated, isAdmin} = require("../middleware/auth");
 const { allUsers, singleUser, editUser, deleteUser, createUserJobsHistory} = require("../controllers/userController");
 
 //User Routes
-// /api/allusers
+// /apis/allusers
 router.get('/allUsers',isAuthenticated, isAdmin, allUsers);
 
-// api/admin/id
+// apis/admin/id
 router.get('/user/:id',isAuthenticated, singleUser);
 
-// api/admin/edit/id
+// apis/admin/edit/id
 router.put('/user/edit/:id',isAuthenticated, editUser);
 
-// api/admin/admin/delete/id
+// apis/admin/admin/delete/id
 router.delete('/admin/user/delete/:id', deleteUser);
 
-// api/admin/jobhistory/'
+// apis/admin/jobhistory/'
 router.post('/user/jobhistory',isAuthenticated,  createUserJobsHistory);
 
 
