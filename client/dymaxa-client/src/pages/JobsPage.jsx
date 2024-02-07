@@ -16,7 +16,6 @@ import axios from "axios";
 
 
 const JobsPage = () => {
-    axios.post('https://dymaxa-redesign.vercel.app')
     const {jobs, pages, loading, id} = useSelector(state => state.loadJobs);
 
     const dispatch = useDispatch();
