@@ -48,7 +48,9 @@ app.use('/api', userRoutes);
 // Error middleware
 app.use(errorHandler);
 
-app.listen(() => console.log(`Server running on Vercel`));
+module.exports = async (req, res) => {
+    res.status(200).send('Server running on Vercel');
+};
 
 
 connectDB().then();
