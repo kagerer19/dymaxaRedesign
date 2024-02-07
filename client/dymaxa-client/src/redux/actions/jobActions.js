@@ -14,7 +14,6 @@ import axios from "axios";
 import {toast} from "react-toastify";
 
 
-//Load jobs
 export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '') => async (dispatch) => {
     dispatch({ type: JOB_LOAD_REQUEST });
 
@@ -23,11 +22,20 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
         const response = await axios.get(url);
 
         if (response.status === 200) {
-            const data = response.data;
-            dispatch({
-                type: JOB_LOAD_SUCCESS,
-                payload: data,
-            });
+            // Check if response data is valid JSON
+            const contentType = response.headers['content-type'];
+            if (contentType && contentType.includes('application/json')) {
+                const data = response.data;
+                dispatch({
+                    type: JOB_LOAD_SUCCESS,
+                    payload: data,
+                });
+            } else {
+                dispatch({
+                    type: JOB_LOAD_FAIL,
+                    payload: 'Response is not valid JSON',
+                });
+            }
         } else {
             dispatch({
                 type: JOB_LOAD_FAIL,
@@ -41,6 +49,7 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
         });
     }
 };
+
 
 //Load single job
 export const loadSingleJobAction = (id) => async (dispatch) => {
