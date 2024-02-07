@@ -14,7 +14,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 // Define your API base URL
-const BASE_URL =  "https://dymaxa-redesign.vercel.app";
+const BASE_URL =  "https://dymaxa-redesign.vercel.app/";
 
 //Load jobs
 //Load jobs
