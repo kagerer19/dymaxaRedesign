@@ -59,3 +59,5 @@ app.get("/", (req, res) => {
 app.use(errorHandler);
 
 connectDB();
+
+module.exports = app;
