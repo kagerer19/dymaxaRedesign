@@ -8,11 +8,11 @@
   ],
   "routes": [
     {
-      "src": "/api/job/show",
+      "src": "/routes",
       "dest": "./index.js",
       "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
       "headers": {
-        "Access-Control-Allow-Origin": "https://dymaxa-redesign-frontend.vercel.app"
+        "Access-Control-Allow-Origin": "*"
       }
     },
     {
