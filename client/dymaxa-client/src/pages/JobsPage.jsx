@@ -90,7 +90,7 @@ const JobsPage = () => {
                                             <li className="">
                                                 <Typography variant="p"  sx={{ fontSize: '16px' }}>
                                                     <WatchLaterIcon  sx={{width: "20px"}}/> <br />
-                                                    {job.employmentType}
+                                                    frrfrfr{job.employmentType}
                                                 </Typography>
                                             </li>
                                         </ul>
