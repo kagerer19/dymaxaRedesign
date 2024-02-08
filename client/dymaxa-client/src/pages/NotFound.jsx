@@ -18,7 +18,7 @@ const NotFound = () => {
                     flexDirection: 'column',
                 }}
             >
-                <img src={'/src/assets/NOT_FOUND.png'} alt="Not Found"
+                <img src={'https://res.cloudinary.com/diufjedfn/image/upload/v1707431939/NOT_FOUND.png'} alt="Not Found"
                      style={{width: '100%', maxWidth: '300px', marginBottom: '2em'}}/>
                 <Typography variant="h4" margin={1} sx={{maxWidth: '300px', textAlign: 'center'}}>
                     Page not found!

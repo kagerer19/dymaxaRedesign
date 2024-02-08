@@ -25,7 +25,7 @@ const LoginOptions = () => {
             <Button onClick={handleClick} disableRipple>
                 <Avatar
                     alt="Remy Sharp"
-                    src="../src/assets/Dymaxa-logo.png"
+                    src="https://res.cloudinary.com/diufjedfn/image/upload/v1706535518/Dymaxa-logo.png"
                     sx={{width: 36, height: 36}}
                 />
             </Button>

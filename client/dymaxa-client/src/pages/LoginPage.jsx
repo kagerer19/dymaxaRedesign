@@ -64,7 +64,7 @@ const LogIn = () => {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'url(../src/assets/imgSignin.png)',
+                        backgroundImage: 'https://res.cloudinary.com/diufjedfn/image/upload/v1707431888/imgSignin.png',
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
