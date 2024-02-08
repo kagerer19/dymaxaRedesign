@@ -20,7 +20,7 @@ const ComingSoon = () => {
                 }}
             >
                 <Typography variant="h3" sx={{textAlign: 'center', marginBottom: '0.5em', color: '#2C3D4F'}}>
-                    User Dashboard coming soon,<br/> hang tight!
+                    This page is coming soon,<br/> hang tight!
                 </Typography>
                 <Typography sx={{maxWidth: '30rem', textAlign: 'center'}} className={'text-gray-700'}>
                     Stay tuned for updates!
