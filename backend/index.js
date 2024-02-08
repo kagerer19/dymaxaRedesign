@@ -38,18 +38,16 @@ app.use('/api', jobRoute);
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 
-// Error middleware
-app.use(errorHandler);
+//database connection
+const dbConnectionString = process.env.DB_CONNECTION_STRING;
 
-// Database connection
-const dbConnectionString = "mongodb+srv://dymaxaDB:nprraRQoZnVKde9j@dymaxarec.rvvspyb.mongodb.net/test?retryWrites=true&w=majority";
-mongoose.set("strictQuery", true);
+mongoose.set("strictQuery", true, "useNewUrlParser", true);
 const connectDB = async () => {
     try {
         await mongoose.connect(dbConnectionString);
-        console.log("MongoDB connected!");
+        console.log("MongoDB is Connected!");
     } catch (err) {
-        console.error("MongoDB connection error:", err);
+        console.error(err.message);
         process.exit(1);
     }
 };
