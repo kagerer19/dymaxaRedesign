@@ -96,7 +96,7 @@ const JobDescriptionPage = () => {
 
                             <ul className="list-disc mt-3 flex gap-6 list-none">
                                 <li>
-                                    <Paid/><br />  3t {singleJob && singleJob.salary}
+                                    <Paid/><br />  {singleJob && singleJob.salary}
                                 </li>
                                 <li>
                                     <strong>
