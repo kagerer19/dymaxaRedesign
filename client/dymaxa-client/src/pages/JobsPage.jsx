@@ -79,18 +79,18 @@ const JobsPage = () => {
                                         <Typography variant="body1" mb={2}>
                                             {truncateText(job.description, 40)}
                                         </Typography>
-                                        <ul style={{listStyleType: 'none'}} className="flex gap-5">
+                                        <ul sx={{listStyleType: 'none'}} className="flex gap-5">
                                             <li>
                                                 <Paid/><br /> {job.salary}
                                             </li>
                                             <li>
-                                                    <LocationOnIcon/><br />
-                                                    {job.location}
+                                                <LocationOnIcon/><br />
+                                                {job.location}
                                             </li>
                                             <li className="">
                                                 <Typography variant="p"  sx={{ fontSize: '16px' }}>
                                                     <WatchLaterIcon  sx={{width: "20px"}}/> <br />
-                                                    frrfrfr{job.employmentType}
+                                                    {job.employmentType}
                                                 </Typography>
                                             </li>
                                         </ul>
