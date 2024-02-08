@@ -21,7 +21,6 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
         const response = await axios.get(`https://dymaxa-redesign.vercel.app/api/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`);
 
         if (response.status === 200) {
-            // Check if response data is valid JSON
             const contentType = response.headers['content-type'];
             if (contentType && contentType.includes('application/json')) {
                 const data = response.data;
