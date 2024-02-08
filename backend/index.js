@@ -54,6 +54,9 @@ const connectDB = async () => {
 
 connectDB().then();
 
+/*
+For DEV
+ */
 //port
 //const port = process.env.PORT || 8000
 

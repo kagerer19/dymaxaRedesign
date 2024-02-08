@@ -25,7 +25,7 @@ const ComingSoon = () => {
                 <Typography sx={{maxWidth: '30rem', textAlign: 'center'}} className={'text-gray-700'}>
                     Stay tuned for updates!
                 </Typography>
-                <img src={'/src/assets/comingSoon-img.png'} alt="Delevery bike image"
+                <img src={'https://res.cloudinary.com/diufjedfn/image/upload/f_auto,q_auto/comingSoon-img'} alt="Delevery bike image"
                      style={{width: '100%', maxWidth: '600px', marginTop: '6em', marginBottom: '3em'}}/>
                 <Link to="/" style={{textDecoration: 'none'}}>
                     <Button
