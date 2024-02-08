@@ -64,7 +64,7 @@ const LogIn = () => {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'https://res.cloudinary.com/diufjedfn/image/upload/v1707431888/imgSignin.png',
+                        backgroundImage: 'url("https://res.cloudinary.com/diufjedfn/image/upload/v1707431888/imgSignin.png")',
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
@@ -90,7 +90,7 @@ const LogIn = () => {
                         }}
                     >
                         <Avatar
-                            src="../src/assets/Dymaxa-logo.png"
+                            src="https://res.cloudinary.com/diufjedfn/image/upload/f_auto,q_auto/Dymaxa-logo"
                             sx={{m: 1}}
                         />
                         <Typography component="h1" variant="h5">
