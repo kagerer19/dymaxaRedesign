@@ -34,7 +34,7 @@ function NavRecruit() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
             >
-                <Popover.Panel className="absolute z-10 mt-5 flex w-screen" style={{ left: 'calc(45% - 290px)', width: "25rem" }}>
+                <Popover.Panel className="absolute z-10 mt-5 flex w-screen" style={{ left: 'calc(55% - 227px)', width: "21rem" }}>
                 <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
                         <div className="p-4">
                             {solutions.map((item) => (
