@@ -12,7 +12,6 @@ const userRoutes = require('./routes/userRoutes');
 const jobRoute = require('./routes/jobsRoutes');
 
 const cookieParser = require("cookie-parser");
-const errorHandler = require("./middleware/error");
 
 // Cors Options
 const corsOptions = {
@@ -54,5 +53,12 @@ const connectDB = async () => {
 
 
 connectDB().then();
+
+//port
+//const port = process.env.PORT || 8000
+
+//app.listen(port, () => {
+ //   console.log(`Server running on port ${port}`);
+//});
 
 module.exports = app;
