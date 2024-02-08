@@ -2,17 +2,15 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Box, Container, Pagination, Stack, Typography} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import {Link, useParams} from "react-router-dom";
 import {jobLoadAction} from "../redux/actions/jobActions.js";
-import NavRecruit from "../components/Nav-recruit.jsx";
 import JobsHero from "../components/JobsHero.jsx";
 import DymaxaFooter from "../components/DymaxaFooter.jsx";
 import truncateText from "../utilities/truncateJobDes.js";
 import LoadingBox from "../components/LoadingBox.jsx";
-import LoginOptions from "../components/LoginOptions.jsx";
 import {Paid} from "@mui/icons-material";
 import DymaxaHeader from "../components/DymaxaHeader.jsx";
-import axios from "axios";
 
 
 const JobsPage = () => {
@@ -66,7 +64,7 @@ const JobsPage = () => {
                                         key={i}
                                         id={id}
                                         sx={{
-                                            minWidth: {xs: '100%', sm: '50%', md: '33%', lg: '25%'},
+                                            minWidth: {xs: '100%', sm: '60%', md: '35%', lg: '25%'},
                                             p: 3,
                                             border: '0.5px solid rgba(74,85,104,0.28)',
                                             shadow: 2,
@@ -81,18 +79,19 @@ const JobsPage = () => {
                                         <Typography variant="body1" mb={2}>
                                             {truncateText(job.description, 40)}
                                         </Typography>
-                                        <ul style={{listStyleType: 'none'}} className="flex gap-6">
+                                        <ul style={{listStyleType: 'none'}} className="flex gap-5">
                                             <li>
-                                                <Paid/> {job.salary}
+                                                <Paid/><br /> {job.salary}
                                             </li>
                                             <li>
-                                                <strong>
-                                                    <LocationOnIcon/>
+                                                    <LocationOnIcon/><br />
                                                     {job.location}
-                                                </strong>
                                             </li>
-                                            <li>
-                                                <strong>Employment Type:</strong> {job.employmentType}
+                                            <li className="">
+                                                <Typography variant="p"  sx={{ fontSize: '16px' }}>
+                                                    <WatchLaterIcon  sx={{width: "20px"}}/> <br />
+                                                    {job.employmentType}
+                                                </Typography>
                                             </li>
                                         </ul>
                                         <Link

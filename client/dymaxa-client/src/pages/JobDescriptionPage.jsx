@@ -9,6 +9,7 @@ import {loadSingleJobAction} from '../redux/actions/jobActions.js';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ApplicationForm from '../components/ApplicationForm.jsx';
 import {AlternateEmail, Paid, PriceCheck} from "@mui/icons-material";
+import WatchLaterIcon from "@mui/icons-material/WatchLater.js";
 
 const JobDescriptionPage = () => {
     const dispatch = useDispatch();
@@ -30,11 +31,11 @@ const JobDescriptionPage = () => {
                         <LoadingBox/>
                     ) : singleJob && singleJob.title ? (
                         <div
-                            style={{minWidth: '56.25vh', minHeight: '75vh'}}
+                            style={{minWidth: '20.25vh', minHeight: '75vh'}}
                             className="p-6 border rounded-lg shadow bg-[#F8F7F2] text-[#4a5568] mb-4"
                         >
-                            <h1 className="text-lg font-semibold mb-3">{singleJob && singleJob.title}</h1>
-                            <p className={'main-job-content'}>{singleJob && singleJob.description}</p>
+                            <h1 className="text-lg font-semibold mb-3 text-center">{singleJob && singleJob.title}</h1>
+                            <p className={'main-job-content text-center'}>{singleJob && singleJob.description}</p>
 
 
                             {/* Render Requirements */}
@@ -94,16 +95,16 @@ const JobDescriptionPage = () => {
 
                             <ul className="list-disc mt-3 flex gap-6">
                                 <li>
-                                    <Paid/>&nbsp; {singleJob && singleJob.salary}
+                                    <Paid/><br />&nbsp; {singleJob && singleJob.salary}
                                 </li>
                                 <li>
                                     <strong>
-                                        <LocationOnIcon/>
+                                        <LocationOnIcon/><br />
                                         {singleJob && singleJob.location}
                                     </strong>
                                 </li>
                                 <li>
-                                    <strong>Employment Type:</strong>&nbsp; {singleJob && singleJob.employmentType}
+                                    <WatchLaterIcon /> <br /> &nbsp; {singleJob && singleJob.employmentType}
                                 </li>
                             </ul>
                         </div>
