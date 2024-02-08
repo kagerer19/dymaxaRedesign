@@ -162,8 +162,3 @@ h2, h3 {
     text-align: center;
     cursor: pointer;
 }
-
-/* Privacy Policy */
-.privacy-policy > ul > li {
-    list-style: disc;
-}
