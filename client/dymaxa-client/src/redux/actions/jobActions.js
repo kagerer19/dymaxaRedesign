@@ -54,7 +54,7 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
 export const loadSingleJobAction = (id) => async (dispatch) => {
     dispatch({ type: SINGLE_JOB_LOAD_REQUEST });
     try {
-        const { data } = await axios.get(`http://localhost:8000/api/job/${id}`);
+        const { data } = await axios.get(`https://dymaxa-redesign.vercel.app/api/job/${id}`);
         dispatch({
             type: SINGLE_JOB_LOAD_SUCCESS,
             payload: data
@@ -73,7 +73,7 @@ export const createAJobAction = (job) => async (dispatch) => {
     dispatch({ type: REGISTER_JOB_REQUEST })
 
     try {
-        const { data } = await axios.post("http://localhost:8000/api/job/create", job)
+        const { data } = await axios.post("https://dymaxa-redesign.vercel.app/api/job/create", job)
         dispatch({
             type: REGISTER_JOB_SUCCESS,
             payload: data
@@ -93,7 +93,7 @@ export const updateJobAction = (id, updateValues) => async (dispatch) => {
     dispatch({ type: UPDATE_JOB_REQUEST });
 
     try {
-        const { data } = await axios.put(`http://localhost:8000/api/job/update/${id}`, updateValues);
+        const { data } = await axios.put(`https://dymaxa-redesign.vercel.app/api/job/update/${id}`, updateValues);
         console.log('Update Payload:', updateValues);
         dispatch({
             type: UPDATE_JOB_SUCCESS,
@@ -113,7 +113,7 @@ export const updateJobAction = (id, updateValues) => async (dispatch) => {
 export const deleteSingleJobAction = (job_id) => async (dispatch) => {
     dispatch({ type: DELETE_JOB_REQUEST });
     try {
-        const { data } = await axios.delete(`http://localhost:8000/api/job/delete/${job_id}`);
+        const { data } = await axios.delete(`https://dymaxa-redesign.vercel.app/api/job/delete/${job_id}`);
         dispatch({
             type: DELETE_JOB_SUCCESS,
             payload: data
