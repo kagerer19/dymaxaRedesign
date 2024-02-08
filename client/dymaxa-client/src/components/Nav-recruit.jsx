@@ -11,10 +11,10 @@ import {
 
 const solutions = [
     { name: 'Recruitment Home', description: 'Get a better understanding of who we are', href: '/', icon: HomeIcon },
-    { name: 'About', description: 'Learn about our solutions', href: '/AboutPage', icon: InformationCircleIcon },
+    { name: 'About', description: 'Learn about our solutions', href: '/ComingSoon', icon: InformationCircleIcon },
     { name: 'Jobs', description: "Find Jobs that suit your profile", href: '/JobsPage', icon: BriefcaseIcon },
-    { name: 'Candidates', description: 'See who we work with', href: '#', icon: UserPlusIcon },
-    { name: 'Contact', description: 'Get in contact', href: '#', icon: PhoneIcon },
+    { name: 'Candidates', description: 'See who we work with', href: '/ComingSoon', icon: UserPlusIcon },
+    { name: 'Contact', description: 'Get in contact', href: '/ComingSoon', icon: PhoneIcon },
 ]
 
 function NavRecruit() {
