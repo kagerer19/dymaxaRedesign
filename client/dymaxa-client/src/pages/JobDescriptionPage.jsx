@@ -8,8 +8,9 @@ import {useParams} from 'react-router-dom';
 import {loadSingleJobAction} from '../redux/actions/jobActions.js';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ApplicationForm from '../components/ApplicationForm.jsx';
-import {AlternateEmail, Paid, PriceCheck} from "@mui/icons-material";
-import WatchLaterIcon from "@mui/icons-material/WatchLater.js";
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import {Paid} from "@mui/icons-material";
+
 
 const JobDescriptionPage = () => {
     const dispatch = useDispatch();
@@ -95,7 +96,7 @@ const JobDescriptionPage = () => {
 
                             <ul className="list-disc mt-3 flex gap-6">
                                 <li>
-                                    <Paid/><br />&nbsp; {singleJob && singleJob.salary}
+                                    <Paid/><br />  3t {singleJob && singleJob.salary}
                                 </li>
                                 <li>
                                     <strong>
