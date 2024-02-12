@@ -16,6 +16,7 @@ import CreateJob from "./pages/admin/CreateJob.jsx";
 import UpdateJob from "./pages/admin/UpdateJob.jsx";
 import ComingSoon from "./pages/ComingSoon.jsx";
 import axios from "axios";
+import About from "./pages/About.jsx";
 
 
 //HOC- higher order Components
@@ -32,6 +33,7 @@ function App() {
                 <BrowserRouter>
                     <Routes>
                         <Route path='/' element={<Home/>}/>
+                        <Route path='/About' element={<About/>}/>
                         <Route path='/JobsPage' element={<JobsPage/>}/>
                         <Route path='/search/location/:location' element={<JobsPage/>}/>
                         <Route path='/search/:keyword' element={<JobsPage/>}/>
