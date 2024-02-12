@@ -12,7 +12,7 @@ export const PageSeparator = () => {
             paddingBottom: {xs: "2rem", md: ""},
             margin: "0 auto"
         }}>
-            <img src={"../src/assets/pageSep.png"} alt={"Four leaf clover"}/>
+            <img src={"https://res.cloudinary.com/diufjedfn/image/upload/f_auto,q_auto/PageSeparator"} alt={"Four leaf clover"}/>
         </Box>
 
     )
