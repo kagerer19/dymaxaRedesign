@@ -14,7 +14,7 @@ export const MainPost = () => {
                 backgroundColor: "#FAF9F4",
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
-                backgroundImage: "url(https://res.cloudinary.com/diufjedfn/image/upload/f_auto,q_auto/aboutHeroMainImg)"
+                backgroundImage: "url(https://res.cloudinary.com/diufjedfn/image/upload/f_auto,q_auto/mainAboutImg)"
             }}
         >
             <Grid container>
