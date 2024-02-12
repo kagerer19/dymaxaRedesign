@@ -28,7 +28,7 @@ const DymaxaHeader = () => {
                     <span className="hidden md:inline text-black">Dymaxa Recruiting</span>
                 </a>
             </div>
-            <div className="flex gap-5 items-center">
+            <div className="flex gap-4 items-center">
                 <NavRecruit/>
                 {hasAdminCookie && <LoginOptions/>}
             </div>

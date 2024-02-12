@@ -9,7 +9,6 @@ export const MainPost = () => {
     return (
         <Paper
             sx={{
-                height: "65vh",
                 position: 'relative',
                 backgroundSize: 'cover',
                 backgroundColor: "#FAF9F4",
@@ -29,8 +28,9 @@ export const MainPost = () => {
                         <Typography
                             sx={{
                                 color: "#f6f6f6",
-                                fontSize: { xs: "3rem", md: "4rem" },
-                                marginTop: {xs : "11rem", md: "9rem"},
+                                fontSize: { xs: "2rem", md: "4rem" },
+                                marginTop: {xs : "2rem", md: "9rem"},
+                                marginBottom: {xs : "2rem", md: "9rem"},
                                 marginLeft: {xs : "3rem", md: "30rem"},
                                 lineHeight: { xs: "1.3", md: "1.3" },
                             }}
