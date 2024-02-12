@@ -9,13 +9,13 @@ const DymaxaFooter = () => {
                        href="/">
                         <span>Dymaxa Recruiting</span>
                     </a>
-                    <div className="ml-8 mt-4 text-center text-sm text-gray-500 md:text-base">© 2024 Dymaxa Recruiting.
+                    <div className="ml-2 mt-4 text-center text-sm text-gray-500 md:text-base">© 2024 Dymaxa Recruiting.
                         All
                         Rights Reserved.
                     </div>
                 </div>
 
-                <div className="flex lg:space-x-19 space-x-9 justify-end pr-6 whitespace-nowrap">
+                <div className="ml-6 flex lg:space-x-19 space-x-9 justify-end pr-6 whitespace-nowrap">
                     <div className="flex flex-col text-center">
                         <h3 className="text-lg font-semibold mb-2 ">About Us</h3>
                         <ul className="space-y-2 text-sm">
