@@ -11,7 +11,7 @@ import {
 export const userSignInAction = (user) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST });
     try {
-        const {data} = await axios.post("http://localhost:8000/api/signin", user);
+        const {data} = await axios.post("https://dymaxa-redesign.vercel.app/api/signin", user);
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch({
             type: USER_SIGNIN_SUCCESS,
@@ -33,7 +33,7 @@ export const userSignInAction = (user) => async (dispatch) => {
 export const userLogoutAction = () => async (dispatch) => {
     dispatch({type: USER_LOGOUT_REQUEST});
     try {
-        const {data} = await axios.get("http://localhost:8000/api/logout");
+        const {data} = await axios.get("https://dymaxa-redesign.vercel.app/api/logout");
         localStorage.removeItem('userInfo')
         dispatch({
             type: USER_LOGOUT_SUCCESS,
