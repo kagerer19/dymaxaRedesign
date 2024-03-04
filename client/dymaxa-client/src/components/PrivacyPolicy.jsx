@@ -10,7 +10,8 @@ const PrivacyPolicy = ({isOpen, onAccept, onClose}) => {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        width: "40rem",
+        width: "90%", // Adjusted width for smaller screens
+        maxWidth: "40rem",
         bgcolor: "#F8F7F2",
         borderRadius: "8px",
         padding: "24px",
