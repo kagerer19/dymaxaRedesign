@@ -6,8 +6,7 @@ const ErrorResponse = require("./utils/errorResponse");
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'kagerer19@gmail.com',
-        pass: 'sgovvmhqcqslyade',
+
     },
 });
 
